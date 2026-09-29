@@ -4,8 +4,8 @@
    "sid": "d86eefd2",
    "group": "A",
    "title": "OSM canal/irrigation data query",
-   "first": "2026-09-21T20:44:01.023Z",
-   "last": "2026-09-21T22:53:08.972Z",
+   "first": "2026-09-21T20:44:01.100Z",
+   "last": "2026-09-21T22:53:07.035Z",
    "tool_calls": 116,
    "tools": {
     "Bash": 67,
@@ -29,8 +29,8 @@
    "sid": "007112a8",
    "group": "A",
    "title": "Project SSD migration",
-   "first": "2026-09-22T05:17:37.692Z",
-   "last": "2026-09-22T05:21:29.989Z",
+   "first": "2026-09-22T05:17:37.776Z",
+   "last": "2026-09-22T05:21:28.206Z",
    "tool_calls": 5,
    "tools": {
     "Bash": 5
@@ -47,8 +47,8 @@
    "sid": "75b23107",
    "group": "B",
    "title": "Latest ERSI wayback image for trench detections",
-   "first": "2026-09-22T05:24:14.854Z",
-   "last": "2026-09-22T07:04:34.383Z",
+   "first": "2026-09-22T05:24:14.915Z",
+   "last": "2026-09-22T07:04:32.610Z",
    "tool_calls": 42,
    "tools": {
     "Bash": 32,
@@ -68,8 +68,8 @@
    "sid": "448c7361",
    "group": "B",
    "title": "Military trenches detection signature",
-   "first": "2026-09-22T05:53:52.122Z",
-   "last": "2026-09-22T07:47:34.821Z",
+   "first": "2026-09-22T05:53:52.191Z",
+   "last": "2026-09-22T07:47:33.348Z",
    "tool_calls": 132,
    "tools": {
     "Bash": 94,
@@ -95,8 +95,8 @@
    "sid": "c66378c1",
    "group": "B",
    "title": "Military geospatial analysis: Sentinel/Wayback imagery",
-   "first": "2026-09-22T07:08:38.046Z",
-   "last": "2026-09-22T07:49:40.543Z",
+   "first": "2026-09-22T07:08:38.112Z",
+   "last": "2026-09-22T07:49:39.219Z",
    "tool_calls": 103,
    "tools": {
     "Bash": 28,
@@ -125,8 +125,8 @@
    "sid": "8d05f04e",
    "group": "B",
    "title": "Yemen trench complexes wayback imagery",
-   "first": "2026-09-22T17:05:43.082Z",
-   "last": "2026-09-22T18:55:11.930Z",
+   "first": "2026-09-22T17:05:43.292Z",
+   "last": "2026-09-22T18:55:10.069Z",
    "tool_calls": 44,
    "tools": {
     "Bash": 33,
@@ -148,8 +148,8 @@
    "sid": "264fa09b",
    "group": "B",
    "title": "Yemen trench detection signatures",
-   "first": "2026-09-22T18:43:11.898Z",
-   "last": "2026-09-22T20:25:48.860Z",
+   "first": "2026-09-22T18:43:12.056Z",
+   "last": "2026-09-22T20:25:48.811Z",
    "tool_calls": 121,
    "tools": {
     "Bash": 91,
@@ -175,8 +175,8 @@
    "sid": "7c12864d",
    "group": "B",
    "title": "Google Earth Engine API key access",
-   "first": "2026-09-22T22:19:34.404Z",
-   "last": "2026-09-22T22:21:02.275Z",
+   "first": "2026-09-22T22:19:34.459Z",
+   "last": "2026-09-22T22:21:00.632Z",
    "tool_calls": 2,
    "tools": {
     "Bash": 2
@@ -193,8 +193,8 @@
    "sid": "3981a117",
    "group": "B",
    "title": "Google Earth Engine API key access (fork)",
-   "first": "2026-09-22T22:19:34.404Z",
-   "last": "2026-09-23T01:38:34.397Z",
+   "first": "2026-09-22T22:19:34.459Z",
+   "last": "2026-09-23T01:38:32.234Z",
    "tool_calls": 118,
    "tools": {
     "Bash": 76,
@@ -223,8 +223,8 @@
    "sid": "a4e8eb74",
    "group": "B",
    "title": "Rerun analysis on original region",
-   "first": "2026-09-23T01:59:33.403Z",
-   "last": "2026-09-23T02:27:34.286Z",
+   "first": "2026-09-23T01:59:33.453Z",
+   "last": "2026-09-23T02:27:32.610Z",
    "tool_calls": 50,
    "tools": {
     "Bash": 37,
@@ -245,8 +245,8 @@
    "sid": "044a49f0",
    "group": "B",
    "title": "Marib frontline structures",
-   "first": "2026-09-23T02:18:55.701Z",
-   "last": "2026-09-23T15:25:09.832Z",
+   "first": "2026-09-23T02:18:55.919Z",
+   "last": "2026-09-23T04:24:06.159Z",
    "tool_calls": 148,
    "tools": {
     "Bash": 86,
@@ -271,8 +271,8 @@
    "sid": "7e6be4f9",
    "group": "B",
    "title": "Yemen trench wayback images export",
-   "first": "2026-09-23T18:10:22.821Z",
-   "last": "2026-09-23T22:31:16.433Z",
+   "first": "2026-09-23T18:10:22.919Z",
+   "last": "2026-09-23T22:31:14.835Z",
    "tool_calls": 108,
    "tools": {
     "Bash": 65,

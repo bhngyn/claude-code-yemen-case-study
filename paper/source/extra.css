@@ -5,15 +5,19 @@
   :root {
     --p0: #2d5016; --p1: #1f6f6b; --p2: #a07a1a; --p3: #8b3a08; --p4: #4a5a78;
     --user-bg: #eef2e4; --claude-bg: transparent;
+    --ink-faint: #6b6353;   /* darkened from the template for WCAG AA (5.5:1) */
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --p0: #8db974; --p1: #5cb8b2; --p2: #d9b45a; --p3: #d99566; --p4: #8fa3c9;
       --user-bg: #232c1d;
+      --ink-faint: #a3977f;
     }
   }
   body { max-width: 940px; }
   .nowrap { white-space: nowrap; }
+  .compact-box { padding: 1rem 1.4rem; margin: 1.2rem 0; } .compact-box li { font-size: 0.93rem; margin: 0.25rem 0; } .compact-box ol { margin: 0.3rem 0 0; }
+  table.sess-table { break-inside: avoid; }
   .mono, code { overflow-wrap: anywhere; }
   header .kicker { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 0.3rem; }
 
@@ -98,7 +102,7 @@
   /* Print: force the light palette, keep the colours, add page numbers */
   @page { size: Letter; margin: 0.7in 0.65in 0.8in; @bottom-center { content: counter(page); font: 9pt "Iowan Old Style", Georgia, serif; color: #847a68; } }
   @media print {
-    :root { --surface: #faf7f0; --surface-2: #f3eedd; --ink: #1f1a14; --ink-soft: #4a4337; --ink-faint: #847a68; --rule: #d9cfb4; --accent: #2d5016;
+    :root { --surface: #faf7f0; --surface-2: #f3eedd; --ink: #1f1a14; --ink-soft: #4a4337; --ink-faint: #6b6353; --rule: #d9cfb4; --accent: #2d5016;
       --accent-soft: #e5ebda; --accent-fg: #213d10; --warn: #8b3a08; --warn-soft: #f5e1cf; --user-bg: #eef2e4;
       --p0: #2d5016; --p1: #1f6f6b; --p2: #a07a1a; --p3: #8b3a08; --p4: #4a5a78; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -107,7 +111,7 @@
     h1 { font-size: 26pt; } h2 { break-after: avoid; margin-top: 1.8rem; } h3, h4 { break-after: avoid; }
     .card.proj { break-inside: auto; }
     .excerpt { box-shadow: none; break-inside: auto; } .ex-head { break-after: avoid; } .ex-head + .turn { break-before: avoid; } .turn { break-inside: avoid; } .ex-head { break-after: avoid; } .ex-why { break-inside: avoid; }
-    .lesson, .callout, .tldr, .tip, .factstrip { break-inside: avoid; }
+    .callout, .tldr, .tip, .factstrip, .human-lens, .lesson .do { break-inside: avoid; } .lesson h3 { break-after: avoid; } .excerpt.short { break-inside: avoid; } .ornament { break-after: avoid; }
     .footnotes li { break-inside: avoid; }
     pre { break-inside: avoid; }
     table { break-inside: auto; page-break-inside: auto; } tr { break-inside: avoid; } .factstrip { grid-template-columns: repeat(6, 1fr); }

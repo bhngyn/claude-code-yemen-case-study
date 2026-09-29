@@ -27,7 +27,7 @@ for root, grp in ROOTS:
             try: o = json.loads(line)
             except Exception: continue
             ts = o.get('timestamp')
-            if ts: first = first or ts; last = ts
+            if ts and o.get('type') in ('user', 'assistant'): first = first or ts; last = ts   # ignore idle queue/bookkeeping entries
             m = o.get('message') or {}; c = m.get('content')
             if o.get('type') == 'assistant':
                 mid = m.get('id')

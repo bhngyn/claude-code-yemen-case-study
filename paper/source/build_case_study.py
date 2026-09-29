@@ -53,7 +53,7 @@ def fig_timeline():
     left, right, top, rh = 292, 800, 46, 24
     x = lambda h: left + (right - left) * h / 52.0
     H = top + rh * len(S) + 34
-    o = [f'<svg viewBox="0 0 880 {H}" role="img" aria-label="Timeline of the twelve logged sessions between 21 and 23 September 2026, coloured by phase">']
+    o = [f'<svg viewBox="0 0 880 {H}" role="img" aria-label="Timeline of the twelve logged sessions between 21 and 23 September 2026, colored by phase">']
     for h, lab in [(3.3, 'Mon 22 Sep 00:00Z'), (27.3, 'Tue 23 Sep 00:00Z'), (51.3, 'Wed 24 Sep')]:
         pass
     for h, lab in [(4, '22 Sep'), (28, '23 Sep')]:
@@ -86,7 +86,7 @@ def fig_tools():
             'mcp__Claude_Browser__preview_start': 'Preview server start', 'ToolSearch': 'ToolSearch (load a tool)', 'Monitor': 'Monitor (wait on a job)'}
     top = sorted(tools.items(), key=lambda kv: -kv[1])[:10]
     rest = tot_tools - sum(v for _, v in top)
-    top.append(('other', rest)); nice['other'] = 'All others (11 kinds)'
+    top.append(('other', rest)); nice['other'] = f'All others ({len(tools) - 10} kinds)'
     left, wmax, rh = 262, 520, 25
     H = 20 + rh * len(top) + 14
     o = [f'<svg viewBox="0 0 880 {H}" role="img" aria-label="Tool calls by type across all sessions">']
@@ -100,16 +100,16 @@ def fig_tools():
     return '\n'.join(o), sum(1 for k in tools) - 10
 
 def fig_recall():
-    o = ['<svg viewBox="0 0 880 340" role="img" aria-label="Two bar panels: recall gains from retuning, and which sensor maps found the hand-labelled trenches">']
+    o = ['<svg viewBox="0 0 880 330" role="img" aria-label="Two bar panels: recall gains from retuning, and which sensor maps found the hand-labelled trenches">']
     def panel(x0, title, rows, maxv, lab_w, note):
-        o.append(f'<text x="{x0}" y="18" font-family="Iowan Old Style, Georgia, serif" font-size="14.5" font-style="italic" class="muted">{title}</text>')
+        o.append(f'<text x="{x0}" y="18" font-family="Iowan Old Style, Georgia, serif" font-size="15.5" font-style="italic" class="muted">{title}</text>')
         for i, (lab, v, accent, txt) in enumerate(rows):
-            y = 34 + i * 48
-            o.append(f'<text x="{x0}" y="{y + 12}" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">{html.escape(lab)}</text>')
+            y = 36 + i * 46
+            o.append(f'<text x="{x0}" y="{y + 12}" font-family="Iowan Old Style, Georgia, serif" font-size="15">{html.escape(lab)}</text>')
             w = (190) * v / maxv
-            o.append(f'<rect x="{x0}" y="{y + 17}" width="{max(w, 2):.1f}" height="11" rx="2" fill="{"var(--accent)" if accent else "var(--ink-faint)"}" opacity="{0.9 if accent else 0.55}"/>')
-            o.append(f'<text class="muted" x="{x0 + w + 6:.1f}" y="{y + 27}" font-family="JetBrains Mono, monospace" font-size="12">{txt}</text>')
-        o.append(f'<text class="faint" x="{x0}" y="{34 + len(rows) * 48 + 4}" font-family="Iowan Old Style, Georgia, serif" font-size="12.5" font-style="italic">{note}</text>')
+            o.append(f'<rect x="{x0}" y="{y + 17}" width="{max(w, 2):.1f}" height="13" rx="2" fill="{"var(--accent)" if accent else "var(--ink-faint)"}" opacity="{0.9 if accent else 0.55}"/>')
+            o.append(f'<text class="muted" x="{x0 + w + 6:.1f}" y="{y + 27}" font-family="JetBrains Mono, monospace" font-size="13.5">{txt}</text>')
+        o.append(f'<text class="faint" x="{x0}" y="{36 + len(rows) * 46 + 4}" font-family="Iowan Old Style, Georgia, serif" font-size="13.5" font-style="italic">{note}</text>')
     panel(10, 'A. Site B main trench: share found at 0.5 % false alarms', [
         ('Radar, old 1-pixel kernel', 0.15, False, '0.15'),
         ('Radar, multi-width bank, registered', 0.54, True, '0.54'),
@@ -117,7 +117,7 @@ def fig_recall():
         ('Optical, 25-scene composites (strip test)', 0.53, True, '0.53'),
         ('Optical, best step over 144 frames (strip test)', 0.63, True, '0.63')], 0.65, 0, 'Source: session 448c7361, 22 Sep 06:38Z summary table.')
     panel(455, 'B. 185 km of hand labels: share of label km found', [
-        ('Radar change (61 px bar)', 0.34, True, '0.34 / 0.44 / 0.53'),
+        ('Radar change', 0.34, True, '0.34 / 0.44 / 0.53'),
         ('Radar static brightness, 2026', 0.21, True, '0.21 / 0.30 / 0.44'),
         ('Optical appearance', 0.06, False, '0.06 / 0.10 / 0.19'),
         ('Optical red-band change', 0.01, False, '0.01 / 0.02 / 0.03')], 0.65, 0, 'Bar = 0.5 % false alarms; text = 0.5 / 1 / 2 %. Source: session 264fa09b summary.')
@@ -156,7 +156,7 @@ def fig_loop():
         for j, ln in enumerate(textwrap.wrap(sub, 36)[:2]):
             o.append(f'<text x="{cx}" y="{cy + 5 + j * 16}" text-anchor="middle" class="muted" font-family="Iowan Old Style, Georgia, serif" font-size="13">{html.escape(ln)}</text>')
     o.append('<text x="440" y="190" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-size="15" font-style="italic" class="muted">one lap = one short prompt</text>')
-    o.append('<text x="440" y="214" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-size="12" class="faint">green boxes: analyst acts · grey boxes: Claude acts</text>')
+    o.append('<text x="440" y="214" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-size="12" class="faint">green boxes: analyst acts · gray boxes: Claude acts</text>')
     o.append('</svg>')
     return '\n'.join(o)
 

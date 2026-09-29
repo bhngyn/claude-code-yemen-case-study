@@ -2,7 +2,7 @@
 
 A methodology paper about how one analyst and [Claude Code](https://claude.com/claude-code) went from a single GPS coordinate to a repeatable satellite-imagery screening workflow for military earthworks in Yemen (21–23 September 2026). It includes the **exact prompts typed**, verbatim excerpts of the conversations that mattered, thirteen lessons, a catalogue of what went wrong, and a getting-started playbook.
 
-**Read it:** [`paper/claude_code_case_study.pdf`](paper/claude_code_case_study.pdf) (32 pages) or [`paper/claude_code_case_study.html`](paper/claude_code_case_study.html) (self-contained, offline, light/dark, prints cleanly).
+**Read it:** [`paper/claude_code_case_study.pdf`](paper/claude_code_case_study.pdf) (34 pages) or [`paper/claude_code_case_study.html`](paper/claude_code_case_study.html) (self-contained, offline, light/dark, prints cleanly).
 
 ## At a glance
 

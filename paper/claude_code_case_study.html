@@ -307,15 +307,19 @@
   :root {
     --p0: #2d5016; --p1: #1f6f6b; --p2: #a07a1a; --p3: #8b3a08; --p4: #4a5a78;
     --user-bg: #eef2e4; --claude-bg: transparent;
+    --ink-faint: #6b6353;   /* darkened from the template for WCAG AA (5.5:1) */
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --p0: #8db974; --p1: #5cb8b2; --p2: #d9b45a; --p3: #d99566; --p4: #8fa3c9;
       --user-bg: #232c1d;
+      --ink-faint: #a3977f;
     }
   }
   body { max-width: 940px; }
   .nowrap { white-space: nowrap; }
+  .compact-box { padding: 1rem 1.4rem; margin: 1.2rem 0; } .compact-box li { font-size: 0.93rem; margin: 0.25rem 0; } .compact-box ol { margin: 0.3rem 0 0; }
+  table.sess-table { break-inside: avoid; }
   .mono, code { overflow-wrap: anywhere; }
   header .kicker { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 0.3rem; }
 
@@ -400,7 +404,7 @@
   /* Print: force the light palette, keep the colours, add page numbers */
   @page { size: Letter; margin: 0.7in 0.65in 0.8in; @bottom-center { content: counter(page); font: 9pt "Iowan Old Style", Georgia, serif; color: #847a68; } }
   @media print {
-    :root { --surface: #faf7f0; --surface-2: #f3eedd; --ink: #1f1a14; --ink-soft: #4a4337; --ink-faint: #847a68; --rule: #d9cfb4; --accent: #2d5016;
+    :root { --surface: #faf7f0; --surface-2: #f3eedd; --ink: #1f1a14; --ink-soft: #4a4337; --ink-faint: #6b6353; --rule: #d9cfb4; --accent: #2d5016;
       --accent-soft: #e5ebda; --accent-fg: #213d10; --warn: #8b3a08; --warn-soft: #f5e1cf; --user-bg: #eef2e4;
       --p0: #2d5016; --p1: #1f6f6b; --p2: #a07a1a; --p3: #8b3a08; --p4: #4a5a78; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -409,7 +413,7 @@
     h1 { font-size: 26pt; } h2 { break-after: avoid; margin-top: 1.8rem; } h3, h4 { break-after: avoid; }
     .card.proj { break-inside: auto; }
     .excerpt { box-shadow: none; break-inside: auto; } .ex-head { break-after: avoid; } .ex-head + .turn { break-before: avoid; } .turn { break-inside: avoid; } .ex-head { break-after: avoid; } .ex-why { break-inside: avoid; }
-    .lesson, .callout, .tldr, .tip, .factstrip { break-inside: avoid; }
+    .callout, .tldr, .tip, .factstrip, .human-lens, .lesson .do { break-inside: avoid; } .lesson h3 { break-after: avoid; } .excerpt.short { break-inside: avoid; } .ornament { break-after: avoid; }
     .footnotes li { break-inside: avoid; }
     pre { break-inside: avoid; }
     table { break-inside: auto; page-break-inside: auto; } tr { break-inside: avoid; } .factstrip { grid-template-columns: repeat(6, 1fr); }
@@ -430,7 +434,7 @@
   </p>
   <p class="meta">
     <strong>Subject:</strong> the Yemen earthwork project, 21–23 September 2026 (Tihama coast, Marib, Sept 2026 front)<br>
-    <strong>Prepared for:</strong> colleagues who want to start working this way ·
+    <strong>Prepared for:</strong> colleagues and leadership who want to understand or start working this way ·
     <strong>Date:</strong> 29 September 2026 ·
     <strong>Method:</strong> review of 12 Claude Code session logs, per <a href="#appendix-method">Appendix D</a><br>
     <strong>Project owner:</strong> GitHub <span class="mono">bhngyn</span> · <strong>Drafted by:</strong> Claude (Sonnet 5.5) from the logs, at the owner's request
@@ -439,9 +443,9 @@
 
 <div class="tldr">
 <h4>The headline, in a paragraph</h4>
-<p>Between the evening of 21 September and the night of 23 September 2026, one analyst and Claude Code went from <strong>one coordinate on the Red Sea coast of Yemen</strong> to a working method for finding, dating and reviewing military earthworks in public satellite imagery. The record is <strong>12 logged sessions, 41 typed prompts (median 17 words) and 989 tool calls</strong>, roughly 24 actions per prompt, with no subagents. The work produced two trench complexes on the Tihama coast and two more at Marib, each confirmed and dated on sub-metre imagery, a region-agnostic screening package (<span class="mono">trenchkit</span>, just under 1,000 lines), ten offline HTML review documents, sixteen KML/KMZ files for Google Earth, and re-applications to the September 2026 front and to Marib.</p>
-<p>The practices that made it work were unglamorous: a <strong>concrete anchor</strong> in every request, the analyst's <strong>hand-drawn labels as the yardstick</strong>, <strong>"ask me questions"</strong> at design forks, <strong>reviewable files</strong> instead of chat summaries, and <strong>memory notes</strong> so a new session could resume without re-briefing. The mistakes were just as instructive, and they are catalogued in §7.</p>
-<p style="margin-top: 0.8rem; font-size: 0.93rem; color: var(--ink-soft);"><em>This paper documents a method and its record. It does not independently validate the imagery findings; the confidence statements quoted here were Claude's assessments at the time, and attribution of who built what is analytic judgement at moderate to low confidence.</em></p>
+<p>Between the evening of 21 September and the night of 23 September 2026, one analyst and Claude Code went from <strong>one coordinate on the Red Sea coast of Yemen</strong> to a working method for finding, dating and reviewing military earthworks in public satellite imagery. The record is <strong>12 logged sessions, 41 typed prompts (median 17 words) and 989 tool calls</strong>, roughly 24 actions per prompt, with no subagents. The work produced two trench complexes on the Tihama coast and two more at Marib, each confirmed and dated on sub-meter imagery, a region-agnostic screening package (<span class="mono">trenchkit</span>, just under 1,000 lines), ten offline HTML review documents, twelve KML/KMZ review files for Google Earth, and re-applications to the September 2026 front and to Marib.</p>
+<p>The practices that made it work were unglamorous: a <strong>concrete anchor</strong> in every request, the analyst's <strong>hand-drawn labels as the yardstick</strong>, <strong>"ask me questions"</strong> at design forks, <strong>reviewable files</strong> instead of chat summaries, and <strong>memory notes</strong> so a new session could resume without re-briefing. The mistakes were just as instructive, and they are cataloged in §7.</p>
+<p style="margin-top: 0.8rem; font-size: 0.93rem; color: var(--ink-soft);"><em>This paper documents a method and its record. It does not independently validate the imagery findings; the confidence statements quoted here were Claude's assessments at the time, and attribution of who built what is analytic judgment at moderate to low confidence.</em></p>
 </div>
 
 <div class="factstrip">
@@ -451,6 +455,18 @@
   <div class="stat"><span class="label">Elapsed</span><span class="value">50 h</span><span class="sub">first to last message</span></div>
   <div class="stat"><span class="label">Memory notes</span><span class="value">10</span><span class="sub">carried across sessions</span></div>
   <div class="stat"><span class="label">Subagents</span><span class="value">0</span><span class="sub">parallel sessions instead</span></div>
+</div>
+
+<div class="tldr compact-box">
+<h4>For leadership: six takeaways</h4>
+<ol class="notes">
+  <li><strong>Pilot with an anchor, not a specification.</strong> The project began with one coordinate and a data request; the scope grew as results arrived.</li>
+  <li><strong>Invest in ground truth.</strong> The scarce input was an analyst's 185 km of hand-drawn labels, not computing power. It is what made the detector measurable.</li>
+  <li><strong>Require reviewable outputs.</strong> Every deliverable opened in the reviewers' own tools and carried a list of what was not verified.</li>
+  <li><strong>Keep human sign-off on irreversible or outward-facing steps</strong>: deleting, publishing, and attributing who built what.</li>
+  <li><strong>Count setup as part of the work.</strong> Data access, environment notes and saved memory were unglamorous and are what let later sessions start fast.</li>
+  <li><strong>Decide the publication policy for sensitive locations before sharing</strong> (§9). Here the owner chose to keep exact coordinates and attribution; the reasoning is in §9.</li>
+</ol>
 </div>
 
 <ol class="toc">
@@ -473,18 +489,18 @@
 <h2 id="s1">1. The project in one page</h2>
 
 <p>The project applies open-source imagery to the Yemen conflict. The starting question was narrow: local reports said fighters were digging trenches through farmland on the Tihama plain near Zabid, and a coordinate on the coast marked where one of them began. Was that visible from space, and were there others?</p>
-<p>Over three days that question grew into a pipeline. Free radar (Sentinel-1) and optical (Sentinel-2) satellite data were used to <em>screen</em> large areas for new straight-line features. Esri's Wayback archive of sub-metre imagery was then used to <em>confirm and date</em> the candidates by eye. The analyst hand-traced 185 km of trenches in Google Earth, and those labels became the test that told Claude which signals worked and which did not. The result was packaged so it could be pointed at a new region.</p>
+<p>Over three days that question grew into a pipeline. Free radar (Sentinel-1) and optical (Sentinel-2) satellite data were used to <em>screen</em> large areas for new straight-line features. Esri's Wayback archive of sub-meter imagery was then used to <em>confirm and date</em> the candidates by eye. The analyst hand-traced 185 km of trenches in Google Earth, and those labels became the test that told Claude which signals worked and which did not. The result was packaged so it could be pointed at a new region.</p>
 
 <table class="compact">
   <thead><tr><th>What was produced</th><th>In plain terms</th><th>Confidence stated at the time</th></tr></thead>
   <tbody>
     <tr><td><strong>Site B</strong>, Al-Fazah</td><td>A 5.6 km ditch running from the beach inland, built in two campaigns (Mar–Dec 2022; Jun 2023–Nov 2024).</td><td>Military obstacle: almost certain. Builder: very likely Houthi, moderate confidence.</td></tr>
     <tr><td><strong>Site A</strong>, Al-Jarrahi–Hays road</td><td>A roughly 9 km trench complex beside the highway, absent in Oct 2021 and complete by Apr 2025.</td><td>Military position: almost certain. Builder as above.</td></tr>
-    <tr><td><strong>trenchkit</strong></td><td>A region-agnostic screening pipeline: define a region, fetch imagery, detect, rank, then review on an offline page with sub-metre frames.</td><td>Baseline recorded: top-100 candidates contain 19 % of the analyst's labelled kilometres.</td></tr>
+    <tr><td><strong>trenchkit</strong></td><td>A region-agnostic screening pipeline: define a region, fetch imagery, detect, rank, then review on an offline page with sub-meter frames.</td><td>Baseline recorded: top-100 candidates contain 19 % of the analyst's labeled kilometers.</td></tr>
     <tr><td><strong>Sept 2026 front</strong></td><td>About 11 km of new or re-graded vehicle tracks on Jabal Kahbub, appearing between the 11 and 16 Sep satellite passes. No large new earthwork elsewhere.</td><td>Real ground change: high. Who built it: low.</td></tr>
-    <tr><td><strong>Original area rerun</strong></td><td>No new digging at sites A/B or any labelled trench after the 10–11 Sep offensive; one freshened 1.3 km track on the old front.</td><td>Moderate for the track; "no change" holds for B-sized works only.</td></tr>
+    <tr><td><strong>Original area rerun</strong></td><td>No new digging at sites A/B or any labeled trench after the 10–11 Sep offensive; one freshened 1.3 km track on the old front.</td><td>Moderate for the track; "no change" holds for B-sized works only.</td></tr>
     <tr><td><strong>Marib</strong></td><td>Two complexes: an 8.4 km ditch network at Raghwan and an ~11 km straight earth bank north of the city, both dated to windows of 1–3 years.</td><td>Confirmed at 0.3–0.6 m; builder not established.</td></tr>
-    <tr><td><strong>Review tools</strong></td><td>Ten offline HTML documents and 16 KML/KMZ files so the analyst could check everything in familiar tools.</td><td>Not all opened in Google Earth (§9).</td></tr>
+    <tr><td><strong>Review tools</strong></td><td>Ten offline HTML documents and 12 KML/KMZ files so the analyst could check everything in familiar tools.</td><td>Not all opened in Google Earth (§9).</td></tr>
   </tbody>
 </table>
 
@@ -523,10 +539,10 @@
 
 <h2 id="s3">3. Timeline: five phases</h2>
 
-<p>The record covers 50 hours of wall-clock time, from the first prompt on 21 September at 20:44 UTC to the last on 23 September at 22:31 UTC.<a class="footnote-ref" href="#fn1">[1]</a> Several sessions ran at the same time; in the early hours of 22 September (UTC) three were open at once, which is how parallel work happened without subagents. The first eight sessions and the start of the ninth ran on <strong>Claude Fable 5.1</strong>; the analyst switched to <strong>Claude Opus 5.5</strong> with <span class="mono">/model</span> at 22:41 UTC on 22 September, and everything after ran on it.</p>
+<p>The record covers 50 hours of wall-clock time, from the first prompt on 21 September at 20:44 UTC to the last on 23 September at 22:31 UTC.<a class="footnote-ref" href="#fn1">[1]</a> Sessions sometimes ran side by side (two were open together for over an hour on the morning of 22 September, UTC), which is how parallel work happened without subagents. The first eight sessions and the start of the ninth ran on <strong>Claude Fable 5.1</strong>; the analyst switched to <strong>Claude Opus 5.5</strong> with <span class="mono">/model</span> at 22:41 UTC on 22 September, and everything after ran on it.</p>
 
 <div class="figure">
-<svg viewBox="0 0 880 368" role="img" aria-label="Timeline of the twelve logged sessions between 21 and 23 September 2026, coloured by phase">
+<svg viewBox="0 0 880 368" role="img" aria-label="Timeline of the twelve logged sessions between 21 and 23 September 2026, colored by phase">
 <line class="axis" x1="331.1" y1="38" x2="331.1" y2="342" stroke-dasharray="3 4"/>
 <text class="faint" font-family="JetBrains Mono, monospace" font-size="10" x="335.1" y="32">22 Sep 00:00Z</text>
 <line class="axis" x1="565.5" y1="38" x2="565.5" y2="342" stroke-dasharray="3 4"/>
@@ -562,11 +578,11 @@
 <rect x="585.0" y="266" width="4.6" height="15" rx="3" fill="var(--p3)"/>
 <text class="faint" x="594.6" y="277" font-family="JetBrains Mono, monospace" font-size="10.5">50 calls</text>
 <text x="284" y="301" text-anchor="end" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Marib front earthworks</text>
-<rect x="588.2" y="290" width="128.0" height="15" rx="3" fill="var(--p4)"/>
-<text class="faint" x="721.2" y="301" font-family="JetBrains Mono, monospace" font-size="10.5">148 calls</text>
+<rect x="588.2" y="290" width="20.4" height="15" rx="3" fill="var(--p4)"/>
+<text class="faint" x="613.5" y="301" font-family="JetBrains Mono, monospace" font-size="10.5">148 calls</text>
 <text x="284" y="325" text-anchor="end" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Wayback tile pack + review page</text>
 <rect x="743.1" y="314" width="42.5" height="15" rx="3" fill="var(--p4)"/>
-<text class="faint" x="790.6" y="325" font-family="JetBrains Mono, monospace" font-size="10.5">108 calls</text>
+<text class="faint" x="790.5" y="325" font-family="JetBrains Mono, monospace" font-size="10.5">108 calls</text>
 <rect x="292" y="347" width="11" height="11" rx="2" fill="var(--p0)"/>
 <text x="308" y="356" font-family="Iowan Old Style, Georgia, serif" font-size="11.5">Phase 0</text>
 <rect x="380.8" y="347" width="11" height="11" rx="2" fill="var(--p1)"/>
@@ -578,7 +594,7 @@
 <rect x="647.2" y="347" width="11" height="11" rx="2" fill="var(--p4)"/>
 <text x="663.2" y="356" font-family="Iowan Old Style, Georgia, serif" font-size="11.5">Phase 4</text>
 </svg>
-<div class="caption">Figure 1. Every logged session as a bar from first to last message (UTC), with tool-call counts. The Marib bar spans 13 hours mostly because Sentinel-2 composites took about 30 minutes each to download and the session waited.</div>
+<div class="caption">Figure 1. Every logged session as a bar from first to last message (UTC), with tool-call counts. The Marib session is a single prompt that ran for about two hours, much of it waiting on Sentinel-2 composites that took about 30 minutes per year to download.</div>
 </div>
 
 <table><thead><tr><th>Phase</th><th>Window (UTC)</th><th class="num">Sessions</th><th class="num">Typed prompts</th><th class="num">Tool calls</th></tr></thead><tbody><tr><td><span class="dot" style="background:var(--p0)"></span><strong>Phase 0: one coordinate to a candidate map</strong></td><td class="mono nowrap">21 Sep 20:44Z → 21 Sep 22:53Z</td><td class="num">1</td><td class="num">10</td><td class="num">116</td></tr>
@@ -588,15 +604,15 @@
 <tr><td><span class="dot" style="background:var(--p4)"></span><strong>Phase 4: Marib and the review tool</strong></td><td class="mono nowrap">23 Sep 02:18Z → 23 Sep 22:31Z</td><td class="num">2</td><td class="num">9</td><td class="num">256</td></tr></tbody></table>
 
 <h3>Phase 0: from one coordinate to a candidate map (21 Sep, 20:44–22:53Z)</h3>
-<p>Ten prompts in a single session. The analyst asked for OSM irrigation layers within 50 km of a point, a KML of them, the World Bank's Tihama datasets, local reporting on trenches, a Sentinel-2 timelapse from 2021, a re-centred timelapse, an NDVI analysis, whether the trench itself was detectable, a scan of the whole 50 km circle, and finally: "there are major trenches and earthworks here" at a second coordinate. That last message changed the detector from optical-first to radar-first (Excerpt 3).</p>
+<p>Ten prompts in a single session. The analyst asked for OSM irrigation layers within 50 km of a point, a KML of them, the World Bank's Tihama datasets, local reporting on trenches, a Sentinel-2 timelapse from 2021, a re-centered timelapse, an NDVI analysis, whether the trench itself was detectable, a scan of the whole 50 km circle, and finally: "there are major trenches and earthworks here" at a second coordinate. That last message changed the detector from optical-first to radar-first (Excerpt 3).</p>
 <h3>Phase 1: retune, review, first analyst paper (22 Sep, 05:17–07:49Z)</h3>
-<p>Four sessions in parallel. Claude fetched the newest Wayback imagery for every candidate, was asked to make the traces easier to see, then pulled older releases for before/after pairs. In another session, the analyst said Site B was "the clearest example of known constructed trenches", and Claude rebuilt the signature around it, publishing a report as a private claude.ai Artifact. The analyst then asked for offline HTML instead, and the next report, a military-analyst paper, was preceded by two rounds of structured questions.</p>
+<p>Four sessions, two of them overlapping for over an hour. Claude fetched the newest Wayback imagery for every candidate, was asked to make the traces easier to see, then pulled older releases for before/after pairs. In another session, the analyst said Site B was "the clearest example of known constructed trenches", and Claude rebuilt the signature around it, publishing a report as a private claude.ai Artifact. The analyst then asked for offline HTML instead, and the next report, a military-analyst paper, was preceded by two rounds of structured questions.</p>
 <h3>Phase 2: the analyst's hand labels (22 Sep, 17:05–20:25Z)</h3>
-<p>Two prompts, each carrying a KMZ the analyst had drawn by hand. The first requested Wayback before/after imagery along the labelled lines; the second asked Claude to learn from the labels, improve detection, package the process and "ask me questions to help design the process". This phase produced the <span class="mono">trenchkit</span> package and the evaluation numbers in Figure 4.</p>
+<p>Two prompts, each carrying a KMZ the analyst had drawn by hand. The first requested Wayback before/after imagery along the labeled lines; the second asked Claude to learn from the labels, improve detection, package the process and "ask me questions to help design the process". This phase produced the <span class="mono">trenchkit</span> package and the evaluation numbers in Figure 4.</p>
 <h3>Phase 3: Earth Engine and the September front (22 Sep 22:19Z – 23 Sep 02:27Z)</h3>
 <p>The analyst registered for Google Earth Engine, Claude got it working and pulled 868 radar chips (1.9 GB) with no failures. Then: "look at the new areas of fighting and look for signs of new construction." A rerun on the original area followed, plus a KML for review.</p>
 <h3>Phase 4: Marib and the review tool (23 Sep, 02:18–22:31Z)</h3>
-<p>One prompt ("are there similar structures in the marib frontline?") ran a 13-hour session that ended in two dated finds. The final eight prompts, mostly short corrections, turned a folder of imagery into a 420 MB self-contained review page with in-browser downloads.</p>
+<p>One prompt ("are there similar structures in the marib frontline?") ran a session of about two hours that ended in two dated finds. The final eight prompts, mostly short corrections, turned a folder of imagery into a 420 MB self-contained review page with in-browser downloads.</p>
 
 <div class="figure">
 <svg viewBox="0 0 880 309" role="img" aria-label="Tool calls by type across all sessions">
@@ -630,7 +646,7 @@
 <text x="252" y="254" text-anchor="end" font-family="Iowan Old Style, Georgia, serif" font-size="14.5">Monitor (wait on a job)</text>
 <rect x="262" y="242" width="8.4" height="17" rx="2" fill="var(--accent)" opacity="0.62"/>
 <text class="muted" x="277.4" y="255" font-family="JetBrains Mono, monospace" font-size="12.5">10</text>
-<text x="252" y="279" text-anchor="end" font-family="Iowan Old Style, Georgia, serif" font-size="14.5">All others (11 kinds)</text>
+<text x="252" y="279" text-anchor="end" font-family="Iowan Old Style, Georgia, serif" font-size="14.5">All others (10 kinds)</text>
 <rect x="262" y="267" width="21.9" height="17" rx="2" fill="var(--accent)" opacity="0.62"/>
 <text class="muted" x="290.9" y="280" font-family="JetBrains Mono, monospace" font-size="12.5">26</text>
 </svg>
@@ -677,9 +693,9 @@
 <text x="150" y="131" text-anchor="middle" class="muted" font-family="Iowan Old Style, Georgia, serif" font-size="13">Memory notes, rebuild kit, updated</text>
 <text x="150" y="147" text-anchor="middle" class="muted" font-family="Iowan Old Style, Georgia, serif" font-size="13">README</text>
 <text x="440" y="190" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-size="15" font-style="italic" class="muted">one lap = one short prompt</text>
-<text x="440" y="214" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-size="12" class="faint">green boxes: analyst acts · grey boxes: Claude acts</text>
+<text x="440" y="214" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-size="12" class="faint">green boxes: analyst acts · gray boxes: Claude acts</text>
 </svg>
-<div class="caption">Figure 3. The loop as observed. Step 3, checking itself, is where most of the quality came from: Claude opened its own contact sheets, found problems (a colour-bar overlap, black mosaics, a mislabelled feature) and said so.</div>
+<div class="caption">Figure 3. The loop as observed. Step 3, checking itself, is where most of the quality came from: Claude opened its own contact sheets, found problems (a color-bar overlap, black mosaics, a mislabeled feature) and said so.</div>
 </div>
 
 <div class="estimate-row">
@@ -688,44 +704,7 @@
   <div class="est-cell"><div class="label">Neither alone could do</div><div class="value">Tune a detector against real labels overnight</div></div>
 </div>
 
-<p>Two structural features are worth naming. First, the analyst almost never described <em>how</em>. Prompts said what they wanted to see ("show me on sentinel 2 what you find") and in what form ("create a kml for me to review"). Second, the review artefact was chosen to fit the analyst's own tools: KML for Google Earth, offline HTML with verdict boxes that export to JSON, GeoTIFFs for QGIS. The deliverable was the interface.</p>
-
-<div class="figure">
-<svg viewBox="0 0 880 340" role="img" aria-label="Two bar panels: recall gains from retuning, and which sensor maps found the hand-labelled trenches">
-<text x="10" y="18" font-family="Iowan Old Style, Georgia, serif" font-size="14.5" font-style="italic" class="muted">A. Site B main trench: share found at 0.5 % false alarms</text>
-<text x="10" y="46" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Radar, old 1-pixel kernel</text>
-<rect x="10" y="51" width="43.8" height="11" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
-<text class="muted" x="59.8" y="61" font-family="JetBrains Mono, monospace" font-size="12">0.15</text>
-<text x="10" y="94" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Radar, multi-width bank, registered</text>
-<rect x="10" y="99" width="157.8" height="11" rx="2" fill="var(--accent)" opacity="0.9"/>
-<text class="muted" x="173.8" y="109" font-family="JetBrains Mono, monospace" font-size="12">0.54</text>
-<text x="10" y="142" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Optical, 3-scene composites</text>
-<rect x="10" y="147" width="64.3" height="11" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
-<text class="muted" x="80.3" y="157" font-family="JetBrains Mono, monospace" font-size="12">0.22</text>
-<text x="10" y="190" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Optical, 25-scene composites (strip test)</text>
-<rect x="10" y="195" width="154.9" height="11" rx="2" fill="var(--accent)" opacity="0.9"/>
-<text class="muted" x="170.9" y="205" font-family="JetBrains Mono, monospace" font-size="12">0.53</text>
-<text x="10" y="238" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Optical, best step over 144 frames (strip test)</text>
-<rect x="10" y="243" width="184.2" height="11" rx="2" fill="var(--accent)" opacity="0.9"/>
-<text class="muted" x="200.2" y="253" font-family="JetBrains Mono, monospace" font-size="12">0.63</text>
-<text class="faint" x="10" y="278" font-family="Iowan Old Style, Georgia, serif" font-size="12.5" font-style="italic">Source: session 448c7361, 22 Sep 06:38Z summary table.</text>
-<text x="455" y="18" font-family="Iowan Old Style, Georgia, serif" font-size="14.5" font-style="italic" class="muted">B. 185 km of hand labels: share of label km found</text>
-<text x="455" y="46" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Radar change (61 px bar)</text>
-<rect x="455" y="51" width="99.4" height="11" rx="2" fill="var(--accent)" opacity="0.9"/>
-<text class="muted" x="560.4" y="61" font-family="JetBrains Mono, monospace" font-size="12">0.34 / 0.44 / 0.53</text>
-<text x="455" y="94" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Radar static brightness, 2026</text>
-<rect x="455" y="99" width="61.4" height="11" rx="2" fill="var(--accent)" opacity="0.9"/>
-<text class="muted" x="522.4" y="109" font-family="JetBrains Mono, monospace" font-size="12">0.21 / 0.30 / 0.44</text>
-<text x="455" y="142" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Optical appearance</text>
-<rect x="455" y="147" width="17.5" height="11" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
-<text class="muted" x="478.5" y="157" font-family="JetBrains Mono, monospace" font-size="12">0.06 / 0.10 / 0.19</text>
-<text x="455" y="190" font-family="Iowan Old Style, Georgia, serif" font-size="13.5">Optical red-band change</text>
-<rect x="455" y="195" width="2.9" height="11" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
-<text class="muted" x="463.9" y="205" font-family="JetBrains Mono, monospace" font-size="12">0.01 / 0.02 / 0.03</text>
-<text class="faint" x="455" y="230" font-family="Iowan Old Style, Georgia, serif" font-size="12.5" font-style="italic">Bar = 0.5 % false alarms; text = 0.5 / 1 / 2 %. Source: session 264fa09b summary.</text>
-</svg>
-<div class="caption">Figure 4. Evidence the loop worked. Panel A: retuning against Site B raised radar detection of its main trench about 3.5 times at the same false-alarm rate. Panel B: once the analyst's 185 km of labels arrived, the detector could be judged, and optical change turned out to be nearly useless for this feature type. Both panels are Claude's own reported figures from the sessions cited.</div>
-</div>
+<p>Two structural features are worth naming. First, the analyst almost never described <em>how</em>. Prompts said what they wanted to see ("show me on sentinel 2 what you find") and in what form ("create a kml for me to review"). Second, the review artifact was chosen to fit the analyst's own tools: KML for Google Earth, offline HTML with verdict boxes that export to JSON, GeoTIFFs for QGIS. The deliverable was the interface.</p>
 
 <div class="ornament">§ &nbsp; §</div>
 
@@ -739,27 +718,64 @@
 
 <div class="lesson"><div class="ln">2</div>
 <h3>Make Claude look before it builds</h3>
-<p>In nearly every session the first several actions were reads: memory notes, the project tree, existing scripts. When the analyst supplied a new KMZ, Claude wrote "There's an existing Wayback toolkit in the project. Let me read it so I reuse it rather than rewrite" and and the same kit was reused for the gap fill and the Marib front. For "rerun the latest iteration on the original region", Claude searched the earlier sessions' prompts to work out what those phrases meant, and then said how it had read them (Excerpt 10).</p>
+<p>In nearly every session the first several actions were reads: memory notes, the project tree, existing scripts. When the analyst supplied a new KMZ, Claude wrote "There's an existing Wayback toolkit in the project. Let me read it so I reuse it rather than rewrite"; the same kit was later reused for the gap fill and the Marib front. For "rerun the latest iteration of the analysis on the original region I requested", Claude searched the earlier sessions' prompts to work out what those phrases meant, and then said how it had read them (Excerpt 10).</p>
 <div class="do"><strong>Do this:</strong> keep vague, reference-heavy prompts ("the original region", "the latest round") but make sure the project has notes Claude can resolve them against.</div></div>
 
 <div class="lesson"><div class="ln">3</div>
 <h3>Use "ask me questions" at forks, then actually answer</h3>
-<p>Two prompts ended with that instruction (21 and 26). The first produced two structured forms with seven questions; the second produced a plain-text list of eight. The answers were short and sometimes were <em>actions</em>: asked about data access, the analyst registered for Earth Engine and asked how to find the key, which answered the question by doing (Excerpt 5). One form answer set a limit that saved a great deal of time: "write from what is on disk now, defer the other options to be done later after I review what's on disk."</p>
+<p>Two prompts ended with that instruction (21 and 26). The first produced two structured forms with seven questions; the second produced a plain-text list of eight. The answers were short and sometimes were <em>actions</em>: asked about data access, the analyst registered for Earth Engine and asked how to find the key, which answered the question by doing (Excerpt 5). One form answer bounded the work: "write from what is on disk now, defer the other options to be done later after I review what's on disk."</p>
 <div class="do"><strong>Do this:</strong> ask for questions when a choice changes what gets built. Answer in chat, or reply with the next action. Note which questions stayed open; here the design questions sat in a memory note as "answers pending".</div></div>
 
 <div class="lesson"><div class="ln">4</div>
 <h3>Ground truth is the currency; make Claude check your labels too</h3>
-<p>The analyst's first label was a single site ("B is the clearest example"). Claude then discovered the hand trace was 50–100 m off and built a new centreline by snapping it to 0.3 m imagery: "Earlier numbers against the old trace understated the gains." The 185 km KMZ went further: it turned a set of hunches into an evaluation with numbers, and showed that optical red-band change found 1 % of the labelled kilometres while radar change found 34 %.</p>
-<div class="do"><strong>Do this:</strong> hand-label a small, representative example set early, in a format Claude can rasterise (KML/KMZ worked). Ask Claude to validate the labels against the best imagery before trusting scores.</div></div>
+<p>The analyst's early guidance was a single example ("B is the clearest example of known constructed trenches I am interested in"). Claude then discovered the hand trace was 50–100 m off and built a new centerline by snapping it to 0.3 m imagery: "Earlier numbers against the old trace understated the gains." The 185 km KMZ went further: it turned a set of hunches into an evaluation with numbers, and showed that optical red-band change found 1 % of the labeled kilometers while radar change found 34 % (Figure 4).</p>
+<div class="do"><strong>Do this:</strong> hand-label a small, representative example set early, in a format Claude can rasterize (KML/KMZ worked). Ask Claude to validate the labels against the best imagery before trusting scores.</div></div>
+
+<div class="figure">
+<svg viewBox="0 0 880 330" role="img" aria-label="Two bar panels: recall gains from retuning, and which sensor maps found the hand-labelled trenches">
+<text x="10" y="18" font-family="Iowan Old Style, Georgia, serif" font-size="15.5" font-style="italic" class="muted">A. Site B main trench: share found at 0.5 % false alarms</text>
+<text x="10" y="48" font-family="Iowan Old Style, Georgia, serif" font-size="15">Radar, old 1-pixel kernel</text>
+<rect x="10" y="53" width="43.8" height="13" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
+<text class="muted" x="59.8" y="63" font-family="JetBrains Mono, monospace" font-size="13.5">0.15</text>
+<text x="10" y="94" font-family="Iowan Old Style, Georgia, serif" font-size="15">Radar, multi-width bank, registered</text>
+<rect x="10" y="99" width="157.8" height="13" rx="2" fill="var(--accent)" opacity="0.9"/>
+<text class="muted" x="173.8" y="109" font-family="JetBrains Mono, monospace" font-size="13.5">0.54</text>
+<text x="10" y="140" font-family="Iowan Old Style, Georgia, serif" font-size="15">Optical, 3-scene composites</text>
+<rect x="10" y="145" width="64.3" height="13" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
+<text class="muted" x="80.3" y="155" font-family="JetBrains Mono, monospace" font-size="13.5">0.22</text>
+<text x="10" y="186" font-family="Iowan Old Style, Georgia, serif" font-size="15">Optical, 25-scene composites (strip test)</text>
+<rect x="10" y="191" width="154.9" height="13" rx="2" fill="var(--accent)" opacity="0.9"/>
+<text class="muted" x="170.9" y="201" font-family="JetBrains Mono, monospace" font-size="13.5">0.53</text>
+<text x="10" y="232" font-family="Iowan Old Style, Georgia, serif" font-size="15">Optical, best step over 144 frames (strip test)</text>
+<rect x="10" y="237" width="184.2" height="13" rx="2" fill="var(--accent)" opacity="0.9"/>
+<text class="muted" x="200.2" y="247" font-family="JetBrains Mono, monospace" font-size="13.5">0.63</text>
+<text class="faint" x="10" y="270" font-family="Iowan Old Style, Georgia, serif" font-size="13.5" font-style="italic">Source: session 448c7361, 22 Sep 06:38Z summary table.</text>
+<text x="455" y="18" font-family="Iowan Old Style, Georgia, serif" font-size="15.5" font-style="italic" class="muted">B. 185 km of hand labels: share of label km found</text>
+<text x="455" y="48" font-family="Iowan Old Style, Georgia, serif" font-size="15">Radar change</text>
+<rect x="455" y="53" width="99.4" height="13" rx="2" fill="var(--accent)" opacity="0.9"/>
+<text class="muted" x="560.4" y="63" font-family="JetBrains Mono, monospace" font-size="13.5">0.34 / 0.44 / 0.53</text>
+<text x="455" y="94" font-family="Iowan Old Style, Georgia, serif" font-size="15">Radar static brightness, 2026</text>
+<rect x="455" y="99" width="61.4" height="13" rx="2" fill="var(--accent)" opacity="0.9"/>
+<text class="muted" x="522.4" y="109" font-family="JetBrains Mono, monospace" font-size="13.5">0.21 / 0.30 / 0.44</text>
+<text x="455" y="140" font-family="Iowan Old Style, Georgia, serif" font-size="15">Optical appearance</text>
+<rect x="455" y="145" width="17.5" height="13" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
+<text class="muted" x="478.5" y="155" font-family="JetBrains Mono, monospace" font-size="13.5">0.06 / 0.10 / 0.19</text>
+<text x="455" y="186" font-family="Iowan Old Style, Georgia, serif" font-size="15">Optical red-band change</text>
+<rect x="455" y="191" width="2.9" height="13" rx="2" fill="var(--ink-faint)" opacity="0.55"/>
+<text class="muted" x="463.9" y="201" font-family="JetBrains Mono, monospace" font-size="13.5">0.01 / 0.02 / 0.03</text>
+<text class="faint" x="455" y="224" font-family="Iowan Old Style, Georgia, serif" font-size="13.5" font-style="italic">Bar = 0.5 % false alarms; text = 0.5 / 1 / 2 %. Source: session 264fa09b summary.</text>
+</svg>
+<div class="caption">Figure 4. Evidence the labels mattered. Panel A: retuning against Site B raised radar detection of its main trench about 3.5 times at the same false-alarm rate. Panel B: once the analyst's 185 km of labels arrived, the detector could be judged, and optical change turned out to be nearly useless for this feature type. Both panels are Claude's own reported figures from the sessions cited.</div>
+</div>
 
 <div class="lesson"><div class="ln">5</div>
 <h3>Let measurements overrule the plan</h3>
-<p>Three times Claude abandoned its own approach because the label scores said so: an optical-first scan caught only a 1.3 km fragment of Site A, so radar became primary; fusing four maps before extraction lost weak lines, so extraction moved to a per-map union; and a learned ranker (13 clean positives, 24 after widening the definition) did not beat the hand-built score out of sample, so Claude stopped the running chain and made the ranker fall back automatically (Excerpt 6).</p>
-<div class="do"><strong>Do this:</strong> ask for an evaluation harness before optimisation, and ask for "the baseline any change must beat" to be stored in a note.</div></div>
+<p>Three times Claude abandoned its own approach because measurements against known sites or labels said so: an optical-first scan caught only a 1.3 km fragment of Site A, so radar became primary; fusing four maps before extraction lost weak lines, so extraction moved to a per-map union; and a learned ranker (13 clean positives, 24 after widening the definition) did not beat the hand-built score out of sample, so Claude stopped the running chain and made the ranker fall back automatically (Excerpt 6).</p>
+<div class="do"><strong>Do this:</strong> ask for an evaluation harness before optimization, and ask for "the baseline any change must beat" to be stored in a note.</div></div>
 
 <div class="lesson"><div class="ln">6</div>
 <h3>Demand a statement of what was <em>not</em> verified</h3>
-<p>Claude's summaries repeatedly carried sentences such as "I haven't opened any of the layers in a GIS", "I haven't verified the Al-Mashjah rim feature at full resolution, so I'm removing that label from the map rather than claim it", and "couldn't open it in the browser here, so I haven't looked at the rendered page." It also retracted claims: it had named World Bank GIS datasets from memory, then searched and reported that none existed (Excerpt 2), and it corrected a feature it had mislabelled as a wadi channel (Excerpt 1).</p>
+<p>Claude's summaries repeatedly carried sentences such as "I haven't opened any of the layers in a GIS", "I haven't verified the Al-Mashjah rim feature at full resolution, so I'm removing that label from the map rather than claim it", and "couldn't open it in the browser here, so I haven't looked at the rendered page." It also retracted claims: it had named World Bank GIS datasets from memory, then searched and reported that none existed (Excerpt 2), and it corrected a feature it had mislabeled as a wadi channel (Excerpt 1).</p>
 <div class="do"><strong>Do this:</strong> treat unstated verification as unperformed. Ask "what did you not check?" at the end of a big deliverable. Prefer results that include a rejected-examples section.</div></div>
 
 <div class="lesson"><div class="ln">7</div>
@@ -769,17 +785,17 @@
 
 <div class="lesson"><div class="ln">8</div>
 <h3>Put stable facts in memory, not in the next prompt</h3>
-<p>Ten memory notes were written: environment limits (which Python has the geo stack, 8 GB of RAM, slow downloads), project state (what sites A and B are, the front-line geography used for attribution), toolkit descriptions, the deliverable-format preference, and one note per major result. Later sessions used them constantly. The Marib session's first move was to read them; the radar pull for sites A and B started from the site coordinates found in the notes.</p>
+<p>Ten memory notes were written: environment limits (which Python has the geo stack, 8 GB of RAM, slow downloads), project state (what sites A and B are, the front-line geography used for attribution), toolkit descriptions, the deliverable-format preference, and one note per major result. All seven substantive sessions that started after the first note was written read the notes within their first five actions (six of them as the very first action), and the radar pull for sites A and B started from the site coordinates found there.</p>
 <div class="do"><strong>Do this:</strong> after each major result, ask Claude to save a note with the facts a later session would need <em>and could not recover from the code</em>. Ask it to record deferred tasks explicitly.</div></div>
 
 <div class="lesson"><div class="ln">9</div>
 <h3>Turn every repeatable step into a kit, and reuse house styles</h3>
-<p>Each report has a builder script, a body template and a figure-prep script beside it. The Wayback fetch script gained <span class="mono">--release</span> and <span class="mono">--ids</span> arguments in its first session and was reused in later ones. The stack-download script was made idempotent so that rerunning it extends rather than repeats. Two skills supplied house style: <span class="mono">analysis-paper</span> (three sessions) and <span class="mono">tufte-graphics</span> (once, for the NDVI charts).</p>
+<p>Most reports have a builder script, a body template and a figure-prep script beside them. The Wayback fetch script gained <span class="mono">--release</span> and <span class="mono">--ids</span> arguments in its first session and was reused in later ones. The stack-download script was made idempotent so that rerunning it extends rather than repeats. Two skills supplied house style: <span class="mono">analysis-paper</span> (three sessions) and <span class="mono">tufte-graphics</span> (once, for the NDVI charts).</p>
 <div class="do"><strong>Do this:</strong> ask for "a script I can rerun" and for parameters at the top. Capture the report style once as a skill.</div></div>
 
 <div class="lesson"><div class="ln">10</div>
 <h3>Match the data source to the job, and measure before you commit</h3>
-<p>Sentinel-1 downloads from one public source ran at 0.1–0.4 MB/s; Claude's own estimate was about a day per orbit for a 100 km region. Earth Engine delivered a 545 × 668-pixel chip in 1.3 seconds, returned all 868 chips without failures, and later fetched Marib composites at roughly three minutes per orbit. Before the big pulls Claude timed a test read (first a public-catalogue window, then one Earth Engine chip).</p>
+<p>Sentinel-1 downloads from one public source ran at 0.1–0.4 MB/s; Claude's own estimate was about a day per orbit for a 100 km region. Earth Engine delivered a 545 × 668-pixel chip in 1.3 seconds, returned all 868 chips without failures, and later fetched Marib composites at roughly three minutes per orbit. Before the big pulls Claude timed a test read (first a public-catalog window, then one Earth Engine chip).</p>
 <div class="do"><strong>Do this:</strong> ask for a throughput test on a small window before any multi-gigabyte pull. Record measured speeds in a note.</div></div>
 
 <div class="lesson"><div class="ln">11</div>
@@ -794,7 +810,7 @@
 
 <div class="lesson"><div class="ln">13</div>
 <h3>Keep irreversible and outward-facing decisions with the human</h3>
-<p>When moving the 8.4 GB project to an external SSD, Claude verified the copy by checksum and file count and then stopped: "The original ... is still in place. Deleting it is irreversible, so I did not do it on my own." Reports carried confidence tiers, not verdicts. Attribution was labelled geography-based and moderate or low. Claude also declined to treat an unverified social-media claim about Al-Jawf berms as evidence.</p>
+<p>When moving the 8.4 GB project to an external SSD, Claude verified the copy by checksum and file count and then stopped: "The original ... is still in place. Deleting it is irreversible, so I did not do it on my own." Reports carried confidence tiers, not verdicts. Attribution was labeled geography-based and moderate or low. Claude also declined to treat an unverified social-media claim about Al-Jawf berms as evidence.</p>
 <div class="do"><strong>Do this:</strong> state which actions need your OK (delete, publish, send, spend). Ask for confidence levels and their basis in every assessment.</div></div>
 
 <div class="ornament">§ &nbsp; §</div>
@@ -802,8 +818,8 @@
 <h2 id="s6">6. Key conversations, verbatim</h2>
 <p>Ten exchanges chosen because they show a decision, a correction or a technique. User text is exactly as typed (spelling included). Claude's text is trimmed for length with "…" and has decorative kaomoji removed.<a class="footnote-ref" href="#fn2">[2]</a> Numbers refer to the prompt ledger in Appendix B.</p>
 
-<div class="excerpt">
-  <div class="ex-head"><span class="ex-tag">Excerpt 1</span><strong>Self-correction on a mislabelled feature</strong> <span class="ex-meta">session d86eefd2 · 21 Sep 21:32Z · prompt 8</span></div>
+<div class="excerpt short">
+  <div class="ex-head"><span class="ex-tag">Excerpt 1</span><strong>Self-correction on a mislabeled feature</strong> <span class="ex-meta">session d86eefd2 · 21 Sep 21:32Z · prompt 8</span></div>
   <div class="turn user"><span class="who">Analyst</span><p>is there a way to detect the building of the military trench with sentinel imagery? it begins at the precise point i've indicated</p></div>
   <div class="turn claude"><span class="who">Claude</span>
     <p>Yes, there is, and we may already have caught it. In the earlier frames there's a thin line running east from your crosshair that isn't there in 2021; I mislabelled it a "wadi channel" in the NDVI map. Let me test that properly with the 10 m data already on disk.</p>
@@ -812,17 +828,17 @@
   <p class="ex-why"><strong>Why it matters.</strong> The analyst asked a yes/no feasibility question; Claude answered it with evidence from files it had already downloaded and openly revised an earlier conclusion. Later reports kept the same habit of listing corrections.</p>
 </div>
 
-<div class="excerpt">
+<div class="excerpt short">
   <div class="ex-head"><span class="ex-tag">Excerpt 2</span><strong>Retracting a claim made from memory</strong> <span class="ex-meta">session d86eefd2 · 21 Sep 20:45Z · prompt 3</span></div>
   <div class="turn user"><span class="who">Analyst</span><p>can you pull the world bank tihama irrigation datasets for me too</p></div>
   <div class="turn claude"><span class="who">Claude</span>
     <p class="gap">[first line of its reply: "Let me see what actually exists publicly (I named those from memory, so I need to verify)". Then four searches and a page fetch.]</p>
     <p>I can't pull them, because as far as I can tell no public World Bank GIS dataset of the Tihama canal network exists. I suggested it last turn from memory, and that was overstated, sorry. The searches turned up reports and coarse rasters, but no downloadable vector canal map.</p>
     <p class="gap">[…followed by a table of what does exist, whether each is usable in GIS, and three options ranked by effort; it asked before downloading anything.]</p></div>
-  <p class="ex-why"><strong>Why it matters.</strong> The correction cost one turn. Left uncorrected, a nonexistent dataset would have been chased for an hour. The habit of verifying its own earlier statements recurs throughout.</p>
+  <p class="ex-why"><strong>Why it matters.</strong> The correction cost one turn. Left uncorrected, the analyst would have been sent after a dataset that does not exist. The habit of verifying its own earlier statements recurs throughout.</p>
 </div>
 
-<div class="excerpt">
+<div class="excerpt short">
   <div class="ex-head"><span class="ex-tag">Excerpt 3</span><strong>Teaching the detector by example</strong> <span class="ex-meta">session d86eefd2 · 21 Sep 22:16Z · prompt 10</span></div>
   <div class="turn user"><span class="who">Analyst</span><p>there are major trenches and earthworks here - can you adjust your detection process to proritize things with a similar signature? 14.056300910076873, 43.431572797625435</p></div>
   <div class="turn claude"><span class="who">Claude</span>
@@ -846,17 +862,17 @@
     <p class="gap">[100 minutes later, after building and testing a package on a fresh 3 km area:]</p>
     <p>Your 185 km of labels showed that the September 21 detector saw about a third of the trench belt, and that the missing two thirds are narrow fighting trenches that 10 m optical data cannot separate from clutter. I rebuilt the detector around what the labels support, packaged it as a region-agnostic pipeline, and verified the package end to end on a fresh 3 km test area. […] <em>Questions for designing the process:</em> 1. Target: only works dug between two dates, or everything present now? […] 3. Data access: the radar stack is the bottleneck. Do you have, or would you get, a Google Earth Engine account? With it the fetch stages become minutes […] 7. Packaging: keep the CLI and README, or also wrap it as a Claude Code skill so future sessions run it identically? […]</p></div>
   <div class="turn user"><span class="who">Analyst (a different session, two hours later; four separate prompts within six minutes)</span><p>how can i get to my google earth engine api key<br>I just registered<br>[GCP_PROJECT_ID]<br>pull Sentinel-1 stacks over sites A and B</p></div>
-  <p class="ex-why"><strong>Why it matters.</strong> The eight questions were never answered in text. Question 3 was answered by registering and asking for the key; Claude corrected the premise ("Earth Engine doesn't hand out an 'API key' at all") and finished the setup. The other seven stayed open, and Claude noted them in memory as "answers pending".</p>
+  <p class="ex-why"><strong>Why it matters.</strong> The eight questions were never answered in text. Question 3 was answered by registering and asking for the key; Claude corrected the premise ("Earth Engine doesn't hand out an 'API key' at all") and finished the setup. The other seven are not answered anywhere in the logs, and Claude noted the questions in memory as "answers pending".</p>
 </div>
 
-<div class="excerpt">
+<div class="excerpt short">
   <div class="ex-head"><span class="ex-tag">Excerpt 6</span><strong>Claude stops its own pipeline when the evaluation disagrees</strong> <span class="ex-meta">session 264fa09b · 22 Sep 20:13Z</span></div>
   <div class="turn claude"><span class="who">Claude (mid-run status message)</span>
     <p>The learned ranker is not yet useful: only 13 components qualify as clean positives, and leave-one-complex-out it does no better than the hand score. I'm stopping the chain before the Wayback pulls use the worse ranking, making the ranker fall back to the hand score when validation shows no gain, and restarting from that point.</p></div>
   <p class="ex-why"><strong>Why it matters.</strong> No one asked for this. The pipeline was running unattended, the next stage would have pulled Wayback imagery for the top 20 of the worse ranking, and Claude caught it. It then made the fallback automatic, so the package reports its own limits in future regions.</p>
 </div>
 
-<div class="excerpt">
+<div class="excerpt short">
   <div class="ex-head"><span class="ex-tag">Excerpt 7</span><strong>An assessment with three confidence tiers</strong> <span class="ex-meta">session 3981a117 · 23 Sep 01:38Z · prompt 38</span></div>
   <div class="turn user"><span class="who">Analyst</span><p>summarize for me your assessment based on the sentinel 1 data analysis</p></div>
   <div class="turn claude"><span class="who">Claude</span>
@@ -864,7 +880,7 @@
   <p class="ex-why"><strong>Why it matters.</strong> A negative finding was made usable: what was ruled out, at what size, against what control window (a late-August period with no front movement), and what remains unknown.</p>
 </div>
 
-<div class="excerpt">
+<div class="excerpt short">
   <div class="ex-head"><span class="ex-tag">Excerpt 8</span><strong>Six words, one root cause</strong> <span class="ex-meta">session 7e6be4f9 · 23 Sep 18:28Z · prompt 45</span></div>
   <div class="turn user"><span class="who">Analyst</span><p>i only see a black screen</p></div>
   <div class="turn claude"><span class="who">Claude</span>
@@ -883,7 +899,7 @@
   <p class="ex-why"><strong>Why it matters.</strong> Two rounds of UI iteration moved from a workaround to a single 420 MB file that runs offline and builds GeoTIFFs in the browser. Note the final sentence: even at the end, the one thing Claude could not test is named.</p>
 </div>
 
-<div class="excerpt">
+<div class="excerpt short">
   <div class="ex-head"><span class="ex-tag">Excerpt 10</span><strong>Resolving a vague reference, and saying how it was read</strong> <span class="ex-meta">session a4e8eb74 · 23 Sep 01:59–02:23Z · prompt 39</span></div>
   <div class="turn user"><span class="who">Analyst</span><p>I want to you to rerun the latest iteration of the analysis on the original region I requested</p></div>
   <div class="turn claude"><span class="who">Claude</span>
@@ -902,7 +918,7 @@
   <tbody>
     <tr><td>OSM query returned HTTP 406</td><td>d86eefd2</td><td>Added a User-Agent header.</td><td>Public APIs need identification.</td></tr>
     <tr><td>Named a World Bank dataset that did not exist</td><td>d86eefd2</td><td>Retracted after searching (Excerpt 2).</td><td>Ask for sources, not recollection.</td></tr>
-    <tr><td>Mislabelled the trench as a wadi channel</td><td>d86eefd2</td><td>Corrected next turn (Excerpt 1).</td><td>Allow revision; list corrections.</td></tr>
+    <tr><td>Mislabeled the trench as a wadi channel</td><td>d86eefd2</td><td>Corrected next turn (Excerpt 1).</td><td>Allow revision; list corrections.</td></tr>
     <tr><td>A script named <span class="mono">select.py</span> shadowed a Python standard-library module</td><td>d86eefd2</td><td>Renamed.</td><td>Avoid stdlib names for scripts.</td></tr>
     <tr><td>Optical-first scan caught 1.3 km of a 9 km complex</td><td>d86eefd2</td><td>Radar-first redesign.</td><td>Calibrate on a known positive early.</td></tr>
     <tr><td>Hand trace of Site B was 50–100 m off the trench</td><td>448c7361</td><td>Re-snapped to 0.3 m imagery.</td><td>Validate labels before scoring against them.</td></tr>
@@ -922,7 +938,7 @@
 
 <div class="human-lens">
 <span class="lens-label">The recurring shape</span>
-<p>Almost every failure was caught by <strong>looking at an output</strong> (an image, a table, a rank) rather than by an error message. Claude made 195 Read calls, most on images it had just rendered, and kept finding things: a colour bar over a panel, black mosaics, overlapping chart labels. The most expensive mistakes were the ones that produced a plausible number without anyone looking, which is why "look at the result" belongs in the prompt.</p>
+<p>Almost every failure was caught by <strong>looking at an output</strong> (an image, a table, a rank) rather than by an error message. Claude made 195 Read calls, most on images it had just rendered, and kept finding things: a color bar over a panel, black mosaics, overlapping chart labels. The most expensive mistakes were the ones that produced a plausible number without anyone looking, which is why "look at the result" belongs in the prompt.</p>
 </div>
 
 <div class="ornament">§ &nbsp; §</div>
@@ -956,7 +972,7 @@
 </tbody></table>
 
 <h3>8.3 A CLAUDE.md to start with</h3>
-<p>Nothing like this existed in the project, and several lessons above would have been cheaper with it. A starting point derived from the record:</p>
+<p>Nothing like this existed in the project folder, and several lessons above would have been cheaper with it. A starting point derived from the record:</p>
 <pre class="prompt"># Project rules (imagery analysis)
 - Deliverables: self-contained offline HTML, KML/KMZ for Google Earth, GeoTIFF for QGIS.
   Do not publish to claude.ai unless asked. Keep a rebuild script beside every report.
@@ -972,14 +988,14 @@
 <h3>8.4 Running <span class="mono">trenchkit</span> on a new region</h3>
 <pre class="prompt">cp regions/template.json regions/my_region.json      # edit the bounding box, epochs and Wayback settings
 PYTHONPATH=. /usr/bin/python3 -m trenchkit.run regions/my_region.json --labels my_labels.kmz</pre>
-<p>Stages, in order: <span class="mono">grid, labels, fetch (S2/S1 or Earth Engine), detect, fuse, features, rank, review, wayback, evaluate</span>. Reported baselines to beat on the Tihama region: the top 25 candidates contain 15 % of label kilometres, the top 100 contain 19 %, and the top 400 contain 27 %. Every labelled complex reaches the top of the list, but the faintest trenches lie outside any candidate. Screening, not mapping, is what it is for.</p>
+<p>Stages, in order: <span class="mono">grid, labels, fetch (S2/S1 or Earth Engine), detect, fuse, features, rank, review, wayback, evaluate</span>. Reported baselines to beat on the Tihama region: the top 25 candidates contain 15 % of label kilometers, the top 100 contain 19 %, and the top 400 contain 27 %. Every labeled complex reaches the top of the list, but the faintest trenches lie outside any candidate. Screening, not mapping, is what it is for.</p>
 
 <h3>8.5 A first-week plan</h3>
 <table class="compact">
   <thead><tr><th>Day</th><th>Do</th><th>Success looks like</th></tr></thead>
   <tbody>
-    <tr><td>1</td><td>Anchor prompts 1–3 on a place you know. End with "create a KML for me to review".</td><td>You open Claude's output in your own tool and find one error in it.</td></tr>
-    <tr><td>2</td><td>Hand-label 10–20 examples. Give the file to Claude with prompt 6.</td><td>Numbers that say which signals work, with the labels checked against imagery.</td></tr>
+    <tr><td>1</td><td>Use templates 1–3 on a place you know. End with "create a KML for me to review".</td><td>You open Claude's output in your own tool and find one error in it.</td></tr>
+    <tr><td>2</td><td>Hand-label 10–20 examples. Give the file to Claude with template 6.</td><td>Numbers that say which signals work, with the labels checked against imagery.</td></tr>
     <tr><td>3</td><td>Ask for the review page with a verdict box per candidate. Review 50.</td><td>A verdict JSON you can feed back as new labels.</td></tr>
     <tr><td>4–5</td><td>Point it at a second region. Write the notes and the CLAUDE.md.</td><td>A new session resumes cold and continues correctly.</td></tr>
   </tbody>
@@ -1010,17 +1026,19 @@ PYTHONPATH=. /usr/bin/python3 -m trenchkit.run regions/my_region.json --labels m
 <div class="ornament">§ &nbsp; §</div>
 
 <h2 id="s10">10. Conclusion</h2>
-<p>In 50 hours, 41 short prompts and 989 tool calls took a single coordinate to two dated trench complexes, a reusable screening package, a fast way to review candidates in the analyst's own tools, and three applications of the method beyond the starting area. The gain came from the loop, not from any single clever prompt: frame, let Claude explore and build, make it check itself, receive a file you can open, review it, and store what was learned.</p>
-<p><strong>First qualification.</strong> The loop only converges when the human contributes ground truth. The 185 km of hand labels changed the project more than any prompt did; without them Claude would have optimised against its own guesses. <strong>Second qualification.</strong> The record shows what Claude reported, and Claude reported on itself. The safeguards that made that credible, such as explicit unverified lists, rejected examples, confidence tiers and human approval of irreversible steps, were partly Claude's habit and partly the analyst's choices, and the safest course is to write them down as rules.</p>
+<p>In 50 hours, 41 short prompts and 989 tool calls took a single coordinate to dated trench complexes on the Tihama coast and at Marib, a reusable screening package, a fast way to review candidates in the analyst's own tools, and three applications of the method beyond the starting area. The gain came from the loop, not from any single clever prompt: frame, let Claude explore and build, make it check itself, receive a file you can open, review it, and store what was learned.</p>
+<p><strong>First qualification.</strong> The loop only converges when the human contributes ground truth. The 185 km of hand labels were the single most valuable input; without them Claude would have optimized against its own guesses. <strong>Second qualification.</strong> The record shows what Claude reported, and Claude reported on itself. The safeguards that made that credible, such as explicit unverified lists, rejected examples, confidence tiers and human approval of irreversible steps, were partly Claude's habit and partly the analyst's choices, and the safest course is to write them down as rules.</p>
 
 <div class="human-lens">
 <span class="lens-label">The story that doesn't fit in a table</span>
-<p>The first request was for irrigation canals. The analyst wanted a map layer for Google Earth, and Claude produced 849 OSM features and a KML. The second request was for a World Bank dataset that did not exist, and Claude said so. By the tenth prompt the analyst was pointing at a coordinate and saying, in effect, <strong>"there are major trenches here, learn what they look like."</strong> Everything after that followed from a habit that started in the first hour: every answer was a file the analyst could open, question, and correct.</p>
+<p>The first request was for irrigation canals. The analyst wanted a map layer for Google Earth, and Claude produced 849 OSM features and a KML. The second request was for a World Bank dataset that did not exist, and Claude said so. By the tenth prompt the analyst was pointing at a coordinate and saying, in effect, <strong>there are major trenches here, so learn what they look like</strong>. Everything after that followed from a habit that started in the first hour: every answer was a file the analyst could open, question, and correct.</p>
+<p><em>Short prompts, reviewable files, written-down rules. (◕‿◕✿)</em></p>
 </div>
 
-<p style="font-style: italic; color: var(--ink-soft);">Kept short on purpose: the shortest prompt that gets a reviewable result is usually the right one. (◕‿◕✿)</p>
 
-<h2 id="appendix-sessions" class="pagebreak">Appendix A. Session table</h2>
+
+
+<h2 id="appendix-sessions">Appendix A. Session table</h2>
 <p>Times are UTC as logged. "Typed" counts typed prompts only. Output tokens are summed from the assistant messages in each log.</p>
 <table class="sess-table"><thead><tr><th>Session</th><th>Title (as logged)</th><th>Start</th><th>End</th><th class="num">Typed</th><th class="num">Tool calls</th><th class="num">Output tokens</th><th>Model</th></tr></thead><tbody><tr><td class="mono">d86eefd2</td><td>OSM canal/irrigation data query</td><td class="mono nowrap">09-21 20:44</td><td class="mono nowrap">09-21 22:53</td><td class="num">10</td><td class="num">116</td><td class="num">121,810</td><td>Fable 5.1</td></tr>
 <tr><td class="mono">007112a8</td><td>Project SSD migration</td><td class="mono nowrap">09-22 05:17</td><td class="mono nowrap">09-22 05:21</td><td class="num">1</td><td class="num">5</td><td class="num">1,833</td><td>Fable 5.1</td></tr>
@@ -1032,7 +1050,7 @@ PYTHONPATH=. /usr/bin/python3 -m trenchkit.run regions/my_region.json --labels m
 <tr><td class="mono">7c12864d</td><td>Google Earth Engine API key access</td><td class="mono nowrap">09-22 22:19</td><td class="mono nowrap">09-22 22:21</td><td class="num">0</td><td class="num">2</td><td class="num">5,677</td><td>Fable 5.1</td></tr>
 <tr><td class="mono">3981a117</td><td>Google Earth Engine API key access (fork)</td><td class="mono nowrap">09-22 22:19</td><td class="mono nowrap">09-23 01:38</td><td class="num">6</td><td class="num">118</td><td class="num">101,050</td><td>Fable 5.1, Opus 5.5</td></tr>
 <tr><td class="mono">a4e8eb74</td><td>Rerun analysis on original region</td><td class="mono nowrap">09-23 01:59</td><td class="mono nowrap">09-23 02:27</td><td class="num">2</td><td class="num">50</td><td class="num">36,413</td><td>Opus 5.5</td></tr>
-<tr><td class="mono">044a49f0</td><td>Marib frontline structures</td><td class="mono nowrap">09-23 02:18</td><td class="mono nowrap">09-23 15:25</td><td class="num">1</td><td class="num">148</td><td class="num">80,946</td><td>Opus 5.5</td></tr>
+<tr><td class="mono">044a49f0</td><td>Marib frontline structures</td><td class="mono nowrap">09-23 02:18</td><td class="mono nowrap">09-23 04:24</td><td class="num">1</td><td class="num">148</td><td class="num">80,946</td><td>Opus 5.5</td></tr>
 <tr><td class="mono">7e6be4f9</td><td>Yemen trench wayback images export</td><td class="mono nowrap">09-23 18:10</td><td class="mono nowrap">09-23 22:31</td><td class="num">8</td><td class="num">108</td><td class="num">111,204</td><td>Opus 5.5</td></tr></tbody><tfoot class="totals"><tr><td colspan="4"><strong>Total</strong></td><td class="num">41</td><td class="num">989</td><td class="num">1,056,709</td><td></td></tr></tfoot></table>
 
 <h2 id="appendix-ledger" class="pagebreak">Appendix B. Full prompt ledger</h2>
@@ -1102,26 +1120,26 @@ PYTHONPATH=. /usr/bin/python3 -m trenchkit.run regions/my_region.json --labels m
     <tr><td class="mono">sep2026_front_construction.html, front2026/</td><td>Kahbub tracks and the negative findings; kit for S1/S2 change with a control window</td><td>3981a117</td></tr>
     <tr><td class="mono">tihama_sep2026_rerun.html, tihama2026/, tihama_sep2026_review.kmz</td><td>Rerun on the original area; 113-candidate review KMZ</td><td>a4e8eb74</td></tr>
     <tr><td class="mono">marib_front_earthworks.html, marib_confirmed_lines.kml</td><td>Raghwan ditch network and north bank; confirmed lines for Google Earth</td><td>044a49f0</td></tr>
-    <tr><td class="mono">wayback_manual_tracks/</td><td>670 one-kilometre tiles, CSV with coordinates and complex labels, gap list, comparison sheets, and a 420 MB self-contained <span class="mono">review.html</span></td><td>7e6be4f9</td></tr>
-    <tr><td class="mono">memory (10 notes)</td><td>Environment, project status, toolkit descriptions, deliverable preference, one per major result</td><td>five sessions</td></tr>
+    <tr><td class="mono">wayback_manual_tracks/</td><td>670 one-kilometer tiles, CSV with coordinates and complex labels, gap list, comparison sheets, and a 420 MB self-contained <span class="mono">review.html</span></td><td>7e6be4f9</td></tr>
+    <tr><td class="mono">memory (10 notes)</td><td>Environment, project status, toolkit descriptions, deliverable preference, one per major result</td><td>across sessions</td></tr>
   </tbody>
 </table>
 
 <h2 id="appendix-method" class="pagebreak">Appendix D. Method and measurement notes</h2>
 <ul class="notes">
-  <li><strong>Sources.</strong> The session logs stored by Claude Code for two project folders: the original <span class="mono">~/Documents/yemen-maps</span> (2 sessions, 21–22 Sep) and its copy on the SSD (10 sessions, 22–23 Sep). The session that produced this paper is excluded.</li>
+  <li><strong>Sources.</strong> The session logs stored by Claude Code for two project folders: the original <span class="mono">~/Documents/yemen-maps</span> (2 sessions, 21–22 Sep) and its copy on the SSD (10 sessions, 22–23 Sep). The session that produced this paper, and one that began after 23 September, are excluded.</li>
   <li><strong>Counting rules.</strong> A "typed prompt" is a user message with typed text that is not tool output, harness-generated, a slash command, a terminal shortcut, or a form answer. A "tool call" is an assistant tool-use block; sub-agent calls would be included but there were none. The two-turn fork stub (7c12864d) repeats the first prompt of 3981a117 and appears once in the ledger.</li>
   <li><strong>Tokens.</strong> Summed once per assistant message ID from the usage fields: 1,056,709 output, 3,241,485 cache-creation, 175,924,494 cache-read. These are the logs' own figures.</li>
-  <li><strong>Redactions.</strong> One Google Cloud project ID replaced by <span class="mono">[GCP_PROJECT_ID]</span> (prompt 34). One OAuth authorisation URL in a terminal output was not reproduced. Pasted terminal output in prompt 31 is omitted. No other prompt text was altered.</li>
-  <li><strong>Quotes.</strong> Claude's quotations are excerpts of its replies; "…" marks omissions, "[…]" in brackets marks summarised material, and kaomoji decorations were dropped. User text is unmodified.</li>
+  <li><strong>Redactions.</strong> One Google Cloud project ID replaced by <span class="mono">[GCP_PROJECT_ID]</span> (prompt 34). One OAuth authorization URL in a terminal output was not reproduced. Pasted terminal output in prompt 31 is omitted. No other prompt text was altered.</li>
+  <li><strong>Quotes.</strong> Claude's quotations are excerpts of its replies; "…" marks omissions, "[…]" in brackets marks summarized material, and kaomoji decorations were dropped. User text is unmodified.</li>
   <li><strong>Result figures</strong> (recall, ranks, lengths, dates) are copied from Claude's summaries in the sessions cited, not recomputed. Their definitions are in the repository's <span class="mono">trenchkit/README.md</span> and the memory notes.</li>
   <li><strong>The offline-HTML preference.</strong> The exact words "i want an offline html not an artifact" are recorded in the feedback note the project saved on 22 Sep; the original message is not among the retained logs, so it is not in the ledger.</li>
-  <li><strong>Rebuild.</strong> <span class="mono">case_study/prep_data.py</span> extracts the ledger and stats; <span class="mono">build_case_study.py</span> assembles this page and, with <span class="mono">--pdf</span>, prints it with headless Chrome.</li>
+  <li><strong>Rebuild.</strong> <span class="mono">prep_data.py</span> extracts the ledger and statistics from the logs; <span class="mono">build_case_study.py</span> assembles this page and, with <span class="mono">--pdf</span>, prints it with headless Chrome.</li>
 </ul>
 
 <div class="footnotes">
 <ol>
-  <li id="fn1">Timestamps are in UTC as stored in the logs. Because several sessions ran concurrently, times are best read as a sequence of events rather than as working hours.</li>
+  <li id="fn1">Timestamps are in UTC as stored in the logs. Because sessions sometimes overlapped and some waited on downloads, the times are best read as a sequence of events rather than as working hours.</li>
   <li id="fn2">Claude's replies in this project often ended with a kaomoji. They are omitted from quotes so that citations stay clean.</li>
   <li id="fn3">Usage is reported as logged per assistant message. Cache-read tokens are re-reads of prior context at each step; they are not an amount of new text and should not be added to output tokens as a measure of work.</li>
 </ol>
