@@ -1,0 +1,49 @@
+{
+ "name": "marib",
+ "description": "Marib fronts 2020-2026: west (Sirwah, Al-Mashjah, Al-Kassara, Hilan), north-west (Raghwan, Al-Alam, Najd al-Ataq), south (Al-Balaq, Wadi Dhana, Al-Jubah, Umm Rish, Mala'a, Harib). Inputs from Earth Engine (fetch_ee).",
+ "bbox_lonlat": [
+  44.95,
+  14.85,
+  45.6,
+  15.85
+ ],
+ "res_m": 10,
+ "epochs": {
+  "2019": [
+   "2019-01-01",
+   "2019-12-31"
+  ],
+  "2022": [
+   "2022-01-01",
+   "2022-12-31"
+  ],
+  "2026": [
+   "2026-01-01",
+   "2026-09-10"
+  ]
+ },
+ "before": "2019",
+ "after": "2026",
+ "s1": {
+  "epochs": {
+   "before": [
+    "2019-01-01",
+    "2019-12-31"
+   ],
+   "after": [
+    "2026-01-01",
+    "2026-09-10"
+   ]
+  },
+  "orbits": "auto",
+  "pol": [
+   "vv",
+   "vh"
+  ]
+ },
+ "s2": {
+  "bands": [
+   "red"
+  ]
+ }
+}

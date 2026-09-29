@@ -1,0 +1,62 @@
+{
+ "name": "REGION_NAME",
+ "description": "one line about the area and why",
+ "center_lonlat": [
+  45.0,
+  15.0
+ ],
+ "radius_m": 50000,
+ "res_m": 10,
+ "epochs": {
+  "2021": [
+   "2021-06-15",
+   "2021-09-21"
+  ],
+  "2022": [
+   "2022-06-15",
+   "2022-09-21"
+  ],
+  "2023": [
+   "2023-06-15",
+   "2023-09-21"
+  ],
+  "2024": [
+   "2024-06-15",
+   "2024-09-21"
+  ],
+  "2025": [
+   "2025-06-15",
+   "2025-09-21"
+  ],
+  "2026": [
+   "2026-06-15",
+   "2026-09-21"
+  ]
+ },
+ "before": "2021",
+ "after": "2026",
+ "s1": {
+  "epochs": {
+   "before": [
+    "2021-01-01",
+    "2022-01-15"
+   ],
+   "after": [
+    "2026-01-01",
+    "2026-09-21"
+   ]
+  },
+  "orbits": "auto",
+  "pol": [
+   "vv"
+  ],
+  "max_dates_per_epoch": 20
+ },
+ "s2": {
+  "bands": [
+   "red"
+  ],
+  "scenes_per_tile": 3
+ },
+ "_comment": "either center_lonlat + radius_m or bbox_lonlat [w, s, e, n]; epochs are the S2 composite windows (same season each year); before/after are the change pair"
+}

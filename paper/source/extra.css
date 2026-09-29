@@ -1,0 +1,118 @@
+
+  /* ============================================================
+     Case-study extensions. New tokens live in :root blocks only.
+     ============================================================ */
+  :root {
+    --p0: #2d5016; --p1: #1f6f6b; --p2: #a07a1a; --p3: #8b3a08; --p4: #4a5a78;
+    --user-bg: #eef2e4; --claude-bg: transparent;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --p0: #8db974; --p1: #5cb8b2; --p2: #d9b45a; --p3: #d99566; --p4: #8fa3c9;
+      --user-bg: #232c1d;
+    }
+  }
+  body { max-width: 940px; }
+  .nowrap { white-space: nowrap; }
+  .mono, code { overflow-wrap: anywhere; }
+  header .kicker { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 0.3rem; }
+
+  /* Contents */
+  .toc { columns: 2; column-gap: 2.5rem; font-size: 0.95rem; margin: 1.2rem 0 0.5rem; padding: 0; list-style: none; counter-reset: toc; }
+  .toc li { break-inside: avoid; margin: 0.22rem 0; }
+  .toc a { text-decoration: none; }
+  .toc .n { color: var(--accent); font-variant-numeric: tabular-nums; display: inline-block; min-width: 1.6rem; }
+
+  /* Fact strip under the TL;DR */
+  .factstrip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.6rem 1.2rem; margin: 1.5rem 0 2rem;
+    padding: 1rem 0; border-top: 2px solid var(--ink-soft); border-bottom: 1px solid var(--rule); }
+  .factstrip .stat { display: flex; flex-direction: column; }
+  .factstrip .label { font-size: 0.72rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .factstrip .value { font-size: 1.6rem; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .factstrip .sub { font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* Excerpts: verbatim dialogue */
+  .excerpt { margin: 2rem 0; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .excerpt .ex-head { border-radius: var(--radius) var(--radius) 0 0; background: var(--surface-2); padding: 0.65rem 1.1rem; border-bottom: 1px solid var(--rule); font-size: 0.9rem; }
+  .excerpt .ex-tag { display: inline-block; background: var(--accent); color: var(--surface); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.08rem 0.5rem; border-radius: 999px; margin-right: 0.55rem; font-weight: 600; }
+  .excerpt .ex-meta { color: var(--ink-faint); font-size: 0.82rem; font-family: "JetBrains Mono", monospace; }
+  .turn { padding: 0.8rem 1.1rem 0.8rem 1.1rem; border-bottom: 1px solid var(--rule); }
+  .turn:last-of-type { border-bottom: none; }
+  .turn .who { display: block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; color: var(--ink-faint); }
+  .turn.user { background: var(--user-bg); border-left: 4px solid var(--accent); }
+  .turn.user .who { color: var(--accent); }
+  .turn.user p { font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace; font-size: 0.86rem; line-height: 1.55; }
+  .turn.claude { border-left: 4px solid var(--rule); }
+  .turn p { margin: 0.3rem 0; font-size: 0.96rem; }
+  .turn ul { margin: 0.3rem 0; padding-left: 1.2rem; font-size: 0.94rem; }
+  .turn .gap { color: var(--ink-faint); font-style: italic; }
+  .excerpt .ex-why { border-radius: 0 0 var(--radius) var(--radius); margin: 0; padding: 0.8rem 1.1rem; background: var(--surface-2); border-top: 1px solid var(--rule); font-size: 0.92rem; color: var(--ink-soft); }
+  .excerpt .ex-why strong { color: var(--accent); }
+
+  /* Lessons */
+  .lesson { margin: 1.6rem 0; padding: 0.3rem 0 0 3.4rem; position: relative; }
+  .lesson .ln { position: absolute; left: 0; top: 0.3rem; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent-fg);
+    display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1.05rem; border: 1px solid var(--accent); }
+  .lesson h3 { margin: 0 0 0.35rem; }
+  .lesson p { margin: 0.35rem 0; }
+  .lesson .do { margin: 0.5rem 0 0; padding: 0.55rem 0.9rem; background: var(--accent-soft); color: var(--accent-fg); border-radius: var(--radius-sm); font-size: 0.93rem; }
+  .lesson .do strong { color: var(--accent-fg); }
+
+  /* Callout for warnings / limits */
+  .callout { margin: 1.5rem 0; padding: 1rem 1.3rem; border: 1px solid var(--warn); background: var(--warn-soft); border-radius: var(--radius); color: var(--ink); }
+  .callout h4 { margin: 0 0 0.4rem; color: var(--warn); }
+  .callout p, .callout li { font-size: 0.95rem; }
+  .callout ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+
+  /* Tables */
+  table.compact { font-size: 0.88rem; }
+  table.compact td, table.compact th { padding: 0.4rem 0.55rem; }
+  table.ledger { font-size: 0.84rem; }
+  table.ledger td { padding: 0.32rem 0.5rem; }
+  table.ledger .ledger-text { font-family: "JetBrains Mono", monospace; font-size: 0.8rem; line-height: 1.45; word-break: break-word; }
+  table.ledger tr.sess td { background: var(--surface-2); border-bottom: 1px solid var(--rule); padding-top: 0.55rem; font-size: 0.86rem; }
+  table.ledger tr { break-inside: avoid; }
+  table.sess-table { font-size: 0.8rem; }
+  table.sess-table td, table.sess-table th { padding: 0.35rem 0.4rem; }
+  tfoot.totals td { border-top: 2px solid var(--ink-soft); font-weight: 600; border-bottom: none; }
+  .dot { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 50%; margin-right: 0.5rem; vertical-align: baseline; }
+  dl.gloss { display: grid; grid-template-columns: 12.5rem 1fr; gap: 0.5rem 1.2rem; margin: 1rem 0; }
+  dl.gloss dt { font-weight: 600; color: var(--ink); }
+  dl.gloss dd { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+  pre.prompt { white-space: pre-wrap; word-break: break-word; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.6rem; }
+  .tip { border-left: 3px solid var(--accent); padding: 0.1rem 0 0.1rem 0.9rem; margin: 0.9rem 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+  table.tpl td.mono { font-size: 0.8rem; line-height: 1.45; }
+  .estimate-row { break-inside: avoid; }
+  @media (max-width: 900px) { .factstrip { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px) {
+    table { display: block; overflow-x: auto; max-width: 100%; }
+    .factstrip { grid-template-columns: repeat(2, 1fr); }
+    .toc { columns: 1; } dl.gloss { grid-template-columns: 1fr; gap: 0.1rem; } dl.gloss dd { margin-bottom: 0.6rem; }
+    .grid2 { grid-template-columns: 1fr; } .lesson { padding-left: 0; } .lesson .ln { position: static; margin-bottom: 0.4rem; }
+    table.ledger .ledger-text { font-size: 0.74rem; }
+  }
+
+  /* Print: force the light palette, keep the colours, add page numbers */
+  @page { size: Letter; margin: 0.7in 0.65in 0.8in; @bottom-center { content: counter(page); font: 9pt "Iowan Old Style", Georgia, serif; color: #847a68; } }
+  @media print {
+    :root { --surface: #faf7f0; --surface-2: #f3eedd; --ink: #1f1a14; --ink-soft: #4a4337; --ink-faint: #847a68; --rule: #d9cfb4; --accent: #2d5016;
+      --accent-soft: #e5ebda; --accent-fg: #213d10; --warn: #8b3a08; --warn-soft: #f5e1cf; --user-bg: #eef2e4;
+      --p0: #2d5016; --p1: #1f6f6b; --p2: #a07a1a; --p3: #8b3a08; --p4: #4a5a78; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { background: var(--surface); }
+    body { font-size: 10.2pt; line-height: 1.48; padding: 0; }
+    h1 { font-size: 26pt; } h2 { break-after: avoid; margin-top: 1.8rem; } h3, h4 { break-after: avoid; }
+    .card.proj { break-inside: auto; }
+    .excerpt { box-shadow: none; break-inside: auto; } .ex-head { break-after: avoid; } .ex-head + .turn { break-before: avoid; } .turn { break-inside: avoid; } .ex-head { break-after: avoid; } .ex-why { break-inside: avoid; }
+    .lesson, .callout, .tldr, .tip, .factstrip { break-inside: avoid; }
+    .footnotes li { break-inside: avoid; }
+    pre { break-inside: avoid; }
+    table { break-inside: auto; page-break-inside: auto; } tr { break-inside: avoid; } .factstrip { grid-template-columns: repeat(6, 1fr); }
+    table.ledger { font-size: 7.6pt; } table.sess-table { font-size: 7.4pt; } table.compact { font-size: 8.6pt; }
+    thead { display: table-header-group; }
+    a { color: var(--ink); }
+    .pagebreak { break-before: page; }
+  }

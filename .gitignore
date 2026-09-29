@@ -1,0 +1,15 @@
+# Data and imagery are deliberately not part of this repository.
+*.tif
+*.tiff
+*.kmz
+*.npy
+*.npz
+*.jpg
+*.jpeg
+*.png
+*.mp4
+work/
+ee_s1/
+.venv/
+__pycache__/
+.DS_Store

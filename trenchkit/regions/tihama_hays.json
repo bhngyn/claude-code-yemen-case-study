@@ -1,0 +1,13 @@
+{
+ "name": "tihama_hays",
+ "description": "Tihama coastal plain between Al-Fazah and Hays (sites A, B and the 2021-2026 Hays front). Same 100 km grid as earthwork_scan/.",
+ "center_lonlat": [43.09836884866308, 14.10770228114205],
+ "radius_m": 50000,
+ "res_m": 10,
+ "epochs": {"2021": ["2021-06-15", "2021-09-21"], "2022": ["2022-06-15", "2022-09-21"], "2023": ["2023-06-15", "2023-09-21"], "2024": ["2024-06-15", "2024-09-21"], "2025": ["2025-06-15", "2025-09-21"], "2026": ["2026-06-15", "2026-09-21"]},
+ "before": "2021",
+ "after": "2026",
+ "s1": {"epochs": {"before": ["2021-01-01", "2022-01-15"], "after": ["2026-01-01", "2026-09-21"]}, "orbits": "auto", "pol": ["vv"], "max_dates_per_epoch": 20},
+ "s2": {"bands": ["red"], "scenes_per_tile": 3},
+ "dir": "/Volumes/T7/yemen-maps/trenchkit/work/tihama_hays"
+}

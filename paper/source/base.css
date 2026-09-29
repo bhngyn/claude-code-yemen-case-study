@@ -1,0 +1,295 @@
+
+  /* ============================================================
+     DESIGN TOKENS — edit the :root block, not the components below.
+     The dark-mode block is a one-for-one mirror of every token.
+     ============================================================ */
+  :root {
+    --surface: #faf7f0;        /* page background */
+    --surface-2: #f3eedd;      /* elevated cards, code blocks */
+    --ink: #1f1a14;            /* body text */
+    --ink-soft: #4a4337;       /* secondary text, em, captions inside body */
+    --ink-faint: #847a68;      /* tertiary text, meta, faint captions */
+    --rule: #d9cfb4;           /* borders, table dividers */
+    --accent: #2d5016;         /* forest green — links, brand-mark, charts */
+    --accent-soft: #e5ebda;    /* accent fill for badges, headline cells */
+    --accent-fg: #213d10;      /* text on accent-soft */
+    --warn: #8b3a08;           /* rust — used sparingly for human-team footprint, warn badges */
+    --warn-soft: #f5e1cf;
+    --shadow: 0 1px 2px rgba(31,26,20,0.06), 0 4px 18px rgba(31,26,20,0.04);
+    --radius: 8px;
+    --radius-sm: 4px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #1b1814;
+      --surface-2: #25211a;
+      --ink: #efe6d3;
+      --ink-soft: #c0b59c;
+      --ink-faint: #7d7361;
+      --rule: #3a3528;
+      --accent: #8db974;       /* mint mirror of forest green */
+      --accent-soft: #2b3a23;
+      --accent-fg: #d9e8c8;
+      --warn: #d99566;
+      --warn-soft: #3d2818;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 18px rgba(0,0,0,0.25);
+    }
+  }
+  html { background: var(--surface); }
+  body {
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, "Source Serif Pro", serif;
+    font-size: 17px;
+    line-height: 1.62;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 6rem;
+  }
+  h1, h2, h3, h4 {
+    font-family: "Iowan Old Style", Georgia, serif;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 2.5rem 0 0.8rem;
+  }
+  h1 { font-size: 2.4rem; margin: 0 0 0.4rem; letter-spacing: -0.02em; }
+  h2 { font-size: 1.55rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+  h3 { font-size: 1.18rem; color: var(--accent); }
+  h4 { font-size: 1rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-top: 1.8rem; }
+  p, li { color: var(--ink); }
+  a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  em { color: var(--ink-soft); }
+  strong { color: var(--ink); font-weight: 600; }
+  code, .mono { font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace; font-size: 0.92em; }
+  pre {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1rem;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.5;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  /* Header chrome */
+  .brand-mark { color: var(--accent); font-weight: 600; }
+  .kaomoji { color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: 1rem; letter-spacing: 0.03em; }
+  .meta {
+    color: var(--ink-faint);
+    font-size: 0.92rem;
+    margin: 0.2rem 0 2rem;
+  }
+  .meta strong { color: var(--ink-soft); font-weight: 500; }
+
+  /* TLDR — the conclusion stated up front */
+  .tldr {
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+  }
+  .tldr h4 { margin-top: 0; color: var(--accent); }
+  .tldr p { margin: 0.6rem 0; }
+  .tldr p:first-of-type { margin-top: 0; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  th {
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--ink-soft);
+  }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  table.totals tr:last-child td { border-top: 2px solid var(--ink-soft); font-weight: 600; }
+
+  /* Badges (project/card metadata) */
+  .badge {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    background: var(--accent-soft);
+    color: var(--accent-fg);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-right: 0.3rem;
+  }
+  .badge.warn { background: var(--warn-soft); color: var(--warn); }
+
+  /* Cards — the repeated per-item block in deep-dive sections */
+  .card {
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow);
+  }
+  .card.proj { padding: 2rem 2rem 1.75rem; margin: 2.5rem 0; }
+  .card.proj h2 {
+    margin-top: 0;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .card.proj .proj-tagline {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 1rem;
+    margin: 0.2rem 0 1.2rem;
+  }
+
+  /* Num-strip — the horizontal stat grid inside a card */
+  .card.proj .num-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 0.7rem 1.2rem;
+    margin: 0.8rem 0 1.4rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .num-strip .stat { display: flex; flex-direction: column; }
+  .num-strip .stat .label { font-size: 0.74rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .num-strip .stat .value { font-size: 1.15rem; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: 0.1rem; font-weight: 500; }
+
+  /* Estimate-row — 3-up grid used for low/mid/high or method-A/B/C splits */
+  .estimate-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .estimate-row .est-cell {
+    background: var(--surface);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--rule);
+  }
+  .est-cell .label { font-size: 0.76rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; }
+  .est-cell .value { font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-top: 0.2rem; }
+  .est-cell.headline { background: var(--accent-soft); border-color: var(--accent); }
+  .est-cell.headline .label { color: var(--accent-fg); }
+  .est-cell.headline .value { color: var(--accent-fg); font-weight: 600; }
+
+  /* Figures (SVG charts) */
+  .figure { margin: 1.5rem 0 0.5rem; }
+  .figure .caption {
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+  svg { display: block; max-width: 100%; height: auto; color: var(--ink); }
+  svg text { fill: currentColor; }
+  svg .muted { fill: var(--ink-soft); }
+  svg .faint { fill: var(--ink-faint); }
+  svg .axis { stroke: var(--rule); }
+  svg .rule-line { stroke: var(--rule); }
+  svg .accent-stroke { stroke: var(--accent); }
+
+  /* Notes-style lists with accent markers */
+  ul.notes { padding-left: 1.2rem; }
+  ul.notes li { margin: 0.35rem 0; }
+  ul.notes li::marker { color: var(--accent); }
+
+  /* Human-lens — narrative inset for "what the data doesn't capture" */
+  .human-lens {
+    margin: 1.4rem 0 0.4rem;
+    padding: 1rem 1.2rem 1rem 1.4rem;
+    background: transparent;
+    border-left: 3px solid var(--accent);
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    line-height: 1.58;
+  }
+  .human-lens .lens-label {
+    display: block;
+    font-family: "Iowan Old Style", Georgia, serif;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+  }
+  .human-lens p { margin: 0.4rem 0; }
+  .human-lens p:first-of-type { margin-top: 0; }
+  .human-lens p:last-of-type { margin-bottom: 0; }
+  .human-lens strong { color: var(--ink); }
+
+  /* Footnotes */
+  .footnote-ref {
+    color: var(--accent);
+    font-size: 0.7em;
+    text-decoration: none;
+    vertical-align: super;
+    margin-left: 0.1em;
+  }
+  .footnotes {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  .footnotes ol { padding-left: 1.3rem; }
+  .footnotes li { margin: 0.4rem 0; }
+
+  /* Typographic ornaments — used instead of <hr> */
+  .ornament {
+    text-align: center;
+    color: var(--ink-faint);
+    margin: 2.5rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 1em;
+    line-height: 1;
+    opacity: 0.45;
+  }
+  .footer-mark {
+    text-align: right;
+    color: var(--accent);
+    opacity: 0.5;
+    font-size: 1.6rem;
+    margin: 4rem 0 0;
+  }
+
+  /* Print — produces clean PDF via Chrome's "Save as PDF" */
+  @media print {
+    body { padding: 1.5rem; max-width: none; font-size: 11pt; }
+    h1 { font-size: 22pt; }
+    h2 { font-size: 14pt; page-break-after: avoid; }
+    h3 { font-size: 12pt; page-break-after: avoid; }
+    .card { box-shadow: none; page-break-inside: avoid; }
+    .card.proj { page-break-before: auto; page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
+    .figure { page-break-inside: avoid; }
+    a { color: var(--ink); text-decoration: none; }
+  }
+
+  /* Mobile — single breakpoint */
+  @media (max-width: 640px) {
+    body { font-size: 16px; padding: 2rem 1rem 4rem; }
+    h1 { font-size: 1.9rem; }
+    .estimate-row { grid-template-columns: 1fr; }
+    .card.proj { padding: 1.25rem; }
+  }
